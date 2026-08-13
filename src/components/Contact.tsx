@@ -46,18 +46,6 @@ const contactMethods = [
 export function Contact() {
   return (
     <section id="contact" className="section bg-bg-page relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 -z-10 opacity-30" aria-hidden="true">
-        <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-          <defs>
-            <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-              <path d="M 20 0 L 0 0 0 20" fill="none" stroke="currentColor" strokeWidth="0.3" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#grid)" />
-        </svg>
-      </div>
-
       <div className="max-w-container mx-auto relative z-10">
         {/* Section Header */}
         <motion.div
@@ -70,9 +58,9 @@ export function Contact() {
           <h2 className="text-display-large text-text-primary mb-4">
             Join the Waitlist
           </h2>
-          <p className="text-body-large text-text-secondary">
-            Early access to AUTO-PLC beta. Technical deep-dives. Founding member pricing.
-          </p>
+              <p className="text-body-large text-text-secondary">
+                Early access to PlatX and AUTO-PLC beta. Technical deep-dives. Founding member pricing.
+              </p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
@@ -85,9 +73,9 @@ export function Contact() {
             <Card variant="elevated" className="p-8 md:p-10">
               <div className="mb-8">
                 <h3 className="text-section-heading text-text-primary mb-2">Join the Waitlist</h3>
-                <p className="text-body text-text-secondary">
-                  Get early access to AUTO-PLC beta, technical deep-dives, and founding member pricing.
-                </p>
+              <p className="text-body text-text-secondary">
+                Get early access to PlatX and AUTO-PLC beta, technical deep-dives, and founding member pricing.
+              </p>
               </div>
 
               <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
@@ -130,10 +118,8 @@ export function Contact() {
                     <option value="" disabled>Select your role</option>
                     <option value="system-integrator">System Integrator</option>
                     <option value="automation-engineer">Automation Engineer</option>
-                    <option value="controls-engineer">Controls Engineer</option>
-                    <option value="instrumentation-engineer">Instrumentation Engineer</option>
                     <option value="engineering-manager">Engineering Manager</option>
-                    <option value="cto-technical-lead">CTO / Technical Lead</option>
+                    <option value="cto">CTO / VP Engineering</option>
                     <option value="investor">Investor</option>
                     <option value="other">Other</option>
                   </select>
@@ -144,9 +130,8 @@ export function Contact() {
                   </label>
                   <select id="interest-select" className="input" autoComplete="off">
                     <option value="" disabled>What interests you most?</option>
-                    <option value="autoplc">AUTO-PLC (PLC Engineering)</option>
-                    <option value="autoio">AUTO-IO (I/O Allocation)</option>
                     <option value="platx">PlatX Platform</option>
+                    <option value="autoplc">AUTO-PLC (PLC Engineering)</option>
                     <option value="partnership">Partnership / Integration</option>
                     <option value="investment">Investment Opportunity</option>
                     <option value="other">Other</option>
@@ -164,14 +149,14 @@ export function Contact() {
               <div className="mt-8 pt-8 border-t border-border-subtle">
                 <h4 className="font-semibold text-sub-heading text-text-primary mb-4">Waitlist Benefits</h4>
                 <ul className="space-y-3" role="list">
-                  {[
-                    'Early beta access to AUTO-PLC',
-                    'Founding member pricing (lifetime)',
-                    'Direct line to engineering team',
-                    'Exclusive technical deep-dives',
-                    'Priority support & onboarding',
-                    'Community Discord access',
-                  ].map((benefit) => (
+                   {[
+                     'Beta access to PlatX and AUTO-PLC',
+                     'Founding member pricing (lifetime)',
+                     'Direct line to the engineering team',
+                     'Exclusive technical deep-dives',
+                     'Priority support & onboarding',
+                     'Community access',
+                   ].map((benefit) => (
                     <li key={benefit} className="flex items-center gap-3 text-body-small text-text-secondary">
                       <CheckCircle className="w-5 h-5 text-success flex-shrink-0" aria-hidden="true" />
                       {benefit}
@@ -252,17 +237,23 @@ export function Contact() {
         >
           <div className="max-w-xl mx-auto p-8 md:p-12 bg-bg-elevated border border-border-standard rounded-panel relative overflow-hidden">
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent-primary to-accent-hover" aria-hidden="true" />
-            <h3 className="text-display-medium text-text-primary mb-4">Get Early Access to AUTO-PLC</h3>
-            <p className="text-body-large text-text-secondary mb-8">
-              Join hundreds of automation engineers on the waitlist. Early access starts Q3 2026.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button type="button" size="lg" leftIcon={<ArrowRight className="w-5 h-5" />}>
-                Join Waitlist Now
-              </Button>
-              <Button type="button" variant="secondary" size="lg">
-                Schedule a Demo
-              </Button>
+          <h3 className="text-display-medium text-text-primary mb-4">Get Early Access to PlatX</h3>
+          <p className="text-body-large text-text-secondary mb-8">
+            Join automation engineers on the waitlist. Early access starts Q4 2026.
+          </p>
+          <p className="mb-8 font-mono text-caption text-text-quaternary">
+            {'// pre-seed · validating with MENA system integrators · no customers yet — your feedback shapes the roadmap'}
+          </p>
+          <p className="mb-6 text-body text-text-secondary">
+            Free during beta · No credit card · No spam — your feedback shapes the roadmap.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button type="button" size="lg" leftIcon={<ArrowRight className="w-5 h-5" />}>
+              Join Waitlist Now
+            </Button>
+            <Button type="button" variant="secondary" size="lg">
+              Schedule a Demo
+            </Button>
             </div>
           </div>
         </motion.div>

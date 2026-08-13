@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react'
 import { motion } from 'framer-motion'
 import {
   Cpu,
@@ -10,89 +11,157 @@ import {
   ArrowRight,
   CheckCircle,
   FileCode,
+  Settings,
+  BarChart3,
+  Wrench,
+  ClipboardList,
+  Radio,
+  Monitor,
+  Workflow,
+  TrendingUp,
 } from 'lucide-react'
 import { Card, CardHeader, CardDescription, CardContent, CardFooter } from '@/components/ui/Card'
 import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
 
-const products = [
+const PlcShowcase = lazy(async () => ({
+  default: (await import('@/components/PlcShowcase')).PlcShowcase,
+}))
+
+const flagshipProducts = [
+  {
+    id: 'platx',
+    icon: Layout,
+    name: 'PlatX',
+    tagline: 'AI-Native Industrial Engineering Operating System',
+    description:
+      'The unified platform connecting the entire industrial automation lifecycle. AI agents, encoded engineering knowledge, and a single data model turn fragmented workflows into one intelligent system.',
+    status: 'In Development',
+    statusVariant: 'accent' as const,
+    highlights: [
+      'AI agents for every engineering discipline',
+      'Single source of truth across the lifecycle',
+      'Engineering standards encoded as rules',
+      'Integrated simulation & validation',
+      'Version control & change management',
+      'Multi-vendor integration (Siemens, Rockwell, ABB)',
+    ],
+    cta: 'Learn more',
+    gradient: 'from-accent-primary/20 to-accent-muted/20',
+  },
   {
     id: 'autoplc',
     icon: Cpu,
     name: 'AUTO-PLC',
-    tagline: 'PLC Engineering Workflow Automation',
+    tagline: 'PLC Engineering Automation',
     description:
-      'Complete AI-assisted PLC engineering platform from requirements to FAT. Deterministic code generation for IEC 61131-3 languages with standards-encoded validation.',
-    status: 'In Development',
+      'The first PlatX module — a proven proof point. Transforms the PLC engineering workflow from requirements to release through a deterministic, AI-assisted pipeline.',
+    status: 'Demo Ready',
     statusVariant: 'accent' as const,
     highlights: [
-      '6-Stage Deterministic Pipeline',
-      'IEC 61131-3 (IL/ST/LAD/FBD/SFC)',
-      'Siemens TIA Portal Integration',
-      'Standards Validator (ISA-88, IEC 61511)',
-      'Simulation & Verification Gates',
-      'Bidirectional PLC Sync',
+      '6-stage gated engineering pipeline',
+      'AI drafts · engines verify · engineers approve',
+      'Standards-encoded validation',
+      'Siemens TIA Portal integration',
+      'Deterministic, reproducible output',
     ],
-    techStack: ['React 19', 'TypeScript', 'Rust WASM', '.NET 8', 'Express'],
-    cta: 'View Technical Docs',
-    gradient: 'from-accent-primary/20 to-accent-muted/20',
+    cta: 'Book a demo',
+    gradient: 'from-accent-primary/15 to-accent-muted/10',
   },
   {
     id: 'autoio',
     icon: Database,
     name: 'AUTO-IO',
-    tagline: 'Automatic I/O Allocation & Engineering',
+    tagline: 'Automatic I/O Allocation',
     description:
-      'Standalone Python GUI application for automatic I/O allocation, cabinet layout, and termination diagrams. Feature-complete POC ready for productization.',
-    status: 'POC Complete',
+      'Automates I/O allocation, cabinet layout, and termination diagrams — eliminating hours of manual spreadsheet work.',
+    status: 'Ready for Integration',
     statusVariant: 'success' as const,
     highlights: [
-      'Automatic I/O Allocation',
-      'Cabinet Layout Generation',
-      'Termination Diagrams',
-      'IO List Management',
-      'Scenario Management',
-      'Report Generation',
+      'Automatic I/O allocation',
+      'Cabinet layout generation',
+      'Termination diagram output',
+      'Scenario comparison',
+      'Report automation',
     ],
-    techStack: ['Python', 'PyQt/Tkinter', 'openpyxl', 'reportlab'],
-    cta: 'Explore POC',
-    gradient: 'from-success/20 to-emerald-600/20',
-  },
-  {
-    id: 'platx',
-    icon: Layout,
-    name: 'PlatX Platform',
-    tagline: 'Industrial Engineering Operating System',
-    description:
-      'Unified platform connecting all AUTO-X modules. Cloud control plane, local execution agents, AIR schema, bidirectional sync, and IIoT/UNS layer.',
-    status: 'Architecture Designed',
-    statusVariant: 'warning' as const,
-    highlights: [
-      'Cloud Control Plane',
-      'Local Execution Agents',
-      'AIR Schema (Asset Info)',
-      'Multi-Vendor Drivers',
-      'Bidirectional Sync',
-      'IIoT / UNS Layer',
-    ],
-    techStack: ['TypeScript', 'Rust', 'Go', 'PostgreSQL', 'NATS', 'Kubernetes'],
-    cta: 'Read Architecture',
-    gradient: 'from-warning/20 to-amber-600/20',
+    cta: 'Learn more',
+    gradient: 'from-success/15 to-accent-muted/10',
   },
 ]
 
-const futureModules = [
-  { name: 'AUTO-DOC', icon: FileCode, desc: 'Engineering Documentation Automation' },
-  { name: 'AUTO-HMI', icon: Layout, desc: 'HMI/SCADA Engineering' },
-  { name: 'AUTO-IIoT', icon: Network, desc: 'ISA-95 / Unified Namespace' },
-  { name: 'AUTO-ICS', icon: Shield, desc: 'OT Cybersecurity Engineering' },
-  { name: 'AUTO-PdM', icon: Brain, desc: 'Predictive Maintenance' },
-  { name: 'AUTO-SIM', icon: Cpu, desc: 'Industrial Simulation / Digital Twin' },
-  { name: 'AUTO-NET', icon: Network, desc: 'Industrial Network Engineering' },
-  { name: 'AUTO-CTRL', icon: Brain, desc: 'Control Engineering' },
-  { name: 'AUTO-INST', icon: Database, desc: 'Instrumentation Engineering' },
-  { name: 'AUTO-ELEC', icon: Zap, desc: 'Electrical Engineering' },
-  { name: 'AUTO-FAT', icon: Shield, desc: 'FAT/SAT Engineering & Testing' },
+const lifecycleModules = [
+  {
+    phase: 'Phase 1: Define & Scope',
+    modules: [
+      { name: 'AUTO-SCOPE', icon: ClipboardList, desc: 'AI-Powered Project Intake' },
+      { name: 'AUTO-REQ', icon: FileCode, desc: 'Requirements Engineering' },
+      { name: 'AUTO-FEED', icon: BarChart3, desc: 'Front-End Engineering Design' },
+    ],
+  },
+  {
+    phase: 'Phase 2: Engineering Design',
+    modules: [
+      { name: 'AUTO-PD', icon: Workflow, desc: 'Process Design' },
+      { name: 'AUTO-INST', icon: Settings, desc: 'Instrumentation Design' },
+      { name: 'AUTO-IO', icon: Database, desc: 'I/O Design' },
+      { name: 'AUTO-ELEC', icon: Zap, desc: 'Electrical Design' },
+      { name: 'AUTO-NET', icon: Network, desc: 'Industrial Network Design' },
+      { name: 'AUTO-SAFE', icon: Shield, desc: 'Functional Safety Engineering' },
+      { name: 'AUTO-ICS/OT', icon: Shield, desc: 'Industrial Cybersecurity' },
+    ],
+  },
+  {
+    phase: 'Phase 3: Control System Development',
+    modules: [
+      { name: 'AUTO-PLC', icon: Cpu, desc: 'PLC Software Engineering' },
+      { name: 'AUTO-HMI', icon: Monitor, desc: 'HMI Engineering' },
+      { name: 'AUTO-SCADA', icon: Layout, desc: 'SCADA Engineering' },
+      { name: 'AUTO-MES', icon: BarChart3, desc: 'MES Integration' },
+      { name: 'AUTO-IIOT', icon: Radio, desc: 'Unified Namespace Platform' },
+    ],
+  },
+  {
+    phase: 'Phase 4: Documentation',
+    modules: [
+      { name: 'AUTO-DOC', icon: FileCode, desc: 'Documentation Automation' },
+      { name: 'AUTO-TEST', icon: CheckCircle, desc: 'Testing Automation' },
+    ],
+  },
+  {
+    phase: 'Phase 5: Simulation & Validation',
+    modules: [
+      { name: 'AUTO-SIM', icon: Cpu, desc: 'Simulation Platform' },
+      { name: 'AUTO-DT', icon: Monitor, desc: 'Digital Twin Platform' },
+    ],
+  },
+  {
+    phase: 'Phase 6: Commissioning',
+    modules: [
+      { name: 'AUTO-COMM', icon: Settings, desc: 'Commissioning Assistant' },
+      { name: 'AUTO-MIGRATE', icon: ArrowRight, desc: 'Migration Platform' },
+    ],
+  },
+  {
+    phase: 'Phase 7: Operations',
+    modules: [
+      { name: 'AUTO-OPS', icon: BarChart3, desc: 'Operations Excellence' },
+      { name: 'AUTO-PERF', icon: TrendingUp, desc: 'Performance Optimization' },
+    ],
+  },
+  {
+    phase: 'Phase 8: Maintenance',
+    modules: [
+      { name: 'AUTO-CM', icon: Wrench, desc: 'Condition Monitoring' },
+      { name: 'AUTO-PDM', icon: Brain, desc: 'Predictive Maintenance' },
+    ],
+  },
+  {
+    phase: 'Phase 9: Continuous Learning',
+    modules: [
+      { name: 'AUTO-KG', icon: Brain, desc: 'Engineering Knowledge Graph' },
+      { name: 'AUTO-LEARN', icon: Brain, desc: 'Continuous Learning Platform' },
+    ],
+  },
 ]
 
 export function Products() {
@@ -113,14 +182,15 @@ export function Products() {
             The AUTO-X Ecosystem
           </h2>
           <p className="text-body-large text-text-secondary">
-            Three core pillars today, with a roadmap of specialized modules for every
-            industrial engineering discipline. Each module integrates through the PlatX platform.
+            PlatX is the AI-Native Industrial Engineering Operating System. AUTO-X modules
+            are specialized AI agents that plug into PlatX — starting with PLC engineering
+            automation and expanding toward the complete industrial automation lifecycle.
           </p>
         </motion.div>
 
-        {/* Current Products */}
+        {/* Flagship Products */}
         <div className="grid-3 mb-24">
-          {products.map((product, index) => (
+          {flagshipProducts.map((product, index) => (
             <motion.div
               key={product.id}
               initial={{ opacity: 0, y: 30 }}
@@ -168,14 +238,7 @@ export function Products() {
                     ))}
                   </div>
 
-                  <div className="flex flex-wrap gap-1.5 mb-6" role="list" aria-label="Technology stack">
-                    {product.techStack.map((tech) => (
-                      <span key={tech} className="text-micro text-text-tertiary bg-bg-hover px-2 py-1 rounded-subtle">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </CardContent>
+                  </CardContent>
 
                 <CardFooter>
                   <Button type="button" variant="secondary" className="w-full justify-between">
@@ -188,34 +251,68 @@ export function Products() {
           ))}
         </div>
 
-        {/* Future Modules */}
+        {/* AUTO-PLC in action — pipeline preview */}
+        <motion.div
+          className="mt-24"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <Badge variant="accent" className="mb-4">
+              Live Preview
+            </Badge>
+            <h3 className="text-section-heading text-text-primary mb-2">AUTO-PLC, in action</h3>
+            <p className="text-body text-text-secondary">
+              The deterministic pipeline: AI proposes, engines verify, engineers approve.
+            </p>
+          </div>
+
+          <Suspense
+            fallback={
+              <div className="h-[460px] rounded-panel border border-border-subtle bg-bg-panel animate-pulse" />
+            }
+          >
+            <PlcShowcase />
+          </Suspense>
+        </motion.div>
+
+        {/* Full Lifecycle Modules */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           <div className="text-center mb-10">
-            <h3 className="text-section-heading text-text-primary mb-2">Roadmap Modules</h3>
-            <p className="text-body text-text-secondary">
-              Planned modules for the PlatX platform. Each will be validated through customer discovery before development.
+            <h3 className="text-section-heading text-text-primary mb-2">Full Lifecycle Coverage</h3>
+            <p className="text-body text-text-secondary max-w-2xl mx-auto">
+              From initial concepts to continuous improvement — 30+ specialized AI agents working
+              together through the PlatX platform.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {futureModules.map((module, index) => (
+          <div className="space-y-8">
+            {lifecycleModules.map((group, gi) => (
               <motion.div
-                key={module.name}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.1 + index * 0.05, duration: 0.4 }}
+                key={group.phase}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: gi * 0.05, duration: 0.4 }}
               >
-                <Card variant="panel" className="h-full text-center py-6">
-                  <div className="w-12 h-12 rounded-panel bg-accent-muted flex items-center justify-center mx-auto mb-3">
-                    <module.icon className="w-6 h-6 text-accent-primary" aria-hidden="true" />
-                  </div>
-                  <h4 className="font-semibold text-sub-heading text-text-primary mb-1">{module.name}</h4>
-                  <p className="text-body-small text-text-tertiary">{module.desc}</p>
-                </Card>
+                <h4 className="font-mono text-mono-label text-accent-primary mb-4">{group.phase}</h4>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                  {group.modules.map((mod) => (
+                    <Card key={mod.name} variant="panel" className="h-full text-center py-5">
+                      <div className="w-10 h-10 rounded-panel bg-accent-muted flex items-center justify-center mx-auto mb-3">
+                        <mod.icon className="w-5 h-5 text-accent-primary" aria-hidden="true" />
+                      </div>
+                      <h5 className="font-semibold text-sub-heading text-text-primary mb-1">{mod.name}</h5>
+                      <p className="text-body-small text-text-tertiary">{mod.desc}</p>
+                    </Card>
+                  ))}
+                </div>
               </motion.div>
             ))}
           </div>

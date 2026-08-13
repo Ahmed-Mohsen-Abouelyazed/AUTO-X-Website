@@ -5,9 +5,10 @@ import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/Button'
 
 const navLinks = [
-  { href: '#features', label: 'Features' },
+  { href: '#how', label: 'Features' },
   { href: '#products', label: 'Products' },
   { href: '#about', label: 'About' },
+  { href: '#faq', label: 'FAQ' },
   { href: '#contact', label: 'Contact' },
 ]
 
@@ -42,25 +43,25 @@ export function Navigation() {
       animate={{ y: 0 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
     >
-      <nav className="max-w-container mx-auto px-6 md:px-8 lg:px-12" aria-label="Main navigation">
-        <div className="flex items-center justify-between h-16 md:h-20">
+      <nav className="max-w-container mx-auto px-6 md:px-8 lg:px-16" aria-label="Main navigation">
+        <div className="flex items-center justify-between h-20 md:h-24">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-2" aria-label="AUTO-X Home">
-            <img
-              src="/logo-32.png"
-              alt=""
-              className="w-8 h-8"
-              aria-hidden="true"
-              width="32"
-              height="32"
-            />
-            <span className="font-display font-semibold text-display-medium text-text-primary tracking-tight">
-              AUTO-X
-            </span>
-          </a>
+            <a href="/" className="brand-link flex items-center gap-3" aria-label="AUTO-X Home">
+              <img
+                src="/AUTO-X_Dark_Theme_Logo_Design_V2-removebg-preview.png"
+                alt=""
+                className="h-9 w-9 object-contain"
+                aria-hidden="true"
+                width="36"
+                height="36"
+              />
+              <span className="brand-wordmark font-display font-semibold text-display-medium text-text-primary tracking-tight">
+                AUTO-X
+              </span>
+            </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden md:flex flex-1 items-center justify-center gap-3">
             {navLinks.map((link, index) => (
               <motion.a
                 key={link.href}
@@ -77,9 +78,10 @@ export function Navigation() {
           </div>
 
           {/* Desktop CTA */}
-          <div className="hidden md:flex items-center gap-3">
-            <a href="#contact" className="btn-tertiary">
-              Join Waitlist
+          <div className="hidden md:flex items-center gap-5">
+            <span className="hidden md:block w-px h-6 bg-border-subtle" aria-hidden="true" />
+            <a href="#how" className="btn-tertiary">
+              How it works
             </a>
             <a href="#contact" className="btn-primary">
               Join Waitlist
@@ -124,7 +126,7 @@ export function Navigation() {
                 ))}
                 <div className="flex flex-col gap-3 pt-4 border-t border-border-subtle">
                   <Button type="button" variant="secondary" className="w-full" onClick={() => setIsOpen(false)}>
-                    Join Waitlist
+                    How it works
                   </Button>
                   <Button type="button" variant="primary" className="w-full justify-center" onClick={() => setIsOpen(false)}>
                     Join Waitlist

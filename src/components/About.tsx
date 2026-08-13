@@ -6,6 +6,9 @@ import {
   Lightbulb,
   BookOpen,
   Rocket,
+  Brain,
+  Database,
+  Cpu,
 } from 'lucide-react'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/Card'
 import { Badge } from '@/components/ui/Badge'
@@ -15,37 +18,55 @@ const values = [
     icon: Target,
     title: 'Engineering Intent First',
     description:
-      'Never generate software directly from vague prompts. Generate from requirements, control narratives, state models, equipment models, and process models. The control model becomes the source of truth.',
+      'We start with real engineering requirements — not vague prompts. The model becomes the single source of truth for everything that follows.',
   },
   {
     icon: Users,
     title: 'Amplification, Not Replacement',
     description:
-      'AUTO-X does not replace control engineers. AUTO-X amplifies their productivity and engineering effectiveness. Human engineers retain authority over engineering decisions and release approval.',
+      'AUTO-X amplifies engineer productivity, never replaces them. Human engineers retain authority over every critical decision.',
   },
   {
     icon: Shield,
-    title: 'Deterministic Engineering',
+    title: 'Deterministic & Safe',
     description:
-      'AI proposes, humans approve at every gate; emission is non-stochastic; mechanical compile-verify. Same input always produces identical output.',
+      'Same input always produces the same output. AI proposes, humans approve — at every gate. No surprises at commissioning.',
   },
   {
     icon: Lightbulb,
     title: 'Standards as Hard Rules',
     description:
-      'ISA-88, ISA-18.2, IEC 61131-3/61511/62443, PLCopen, Siemens naming/TIA structure encoded as deterministic validators, not senior hires.',
+      'ISA-88, IEC 61131, IEC 62443, and vendor-specific standards are encoded as validators — not opinions.',
   },
   {
     icon: BookOpen,
-    title: 'Verification Over Generation',
+    title: 'Verification First',
     description:
-      'Verification is more valuable than generation. Mechanical compile-verify is mandatory; deterministic engines emit; standards-encoded validator is the moat.',
+      'Getting it right is more valuable than moving fast. Every output is mechanically validated before it ships.',
   },
   {
     icon: Rocket,
     title: 'Evidence-Driven',
     description:
-      'Claims require validation. Unvalidated claims remain hypotheses. No false precision. Customer evidence drives product decisions.',
+      'Claims require validation. No false precision. Customer evidence drives every product decision.',
+  },
+  {
+    icon: Brain,
+    title: 'Engineering Knowledge',
+    description:
+      'AI combined with deep domain expertise in industrial automation. Knowledge is encoded, not learned from scratch.',
+  },
+  {
+    icon: Database,
+    title: 'Unified Data',
+    description:
+      'One data model connects requirements, designs, and assets — eliminating the fragmentation that costs projects millions.',
+  },
+  {
+    icon: Cpu,
+    title: 'Continuous Learning',
+    description:
+      'Every project feeds back knowledge that improves the next one. The platform gets smarter with every deployment.',
   },
 ]
 
@@ -60,14 +81,15 @@ const team = [
 ]
 
 const milestones = [
-  { date: '2026-08', title: 'Company Founded', description: 'AUTO-X established in Egypt with mission to transform industrial engineering' },
+  { date: '2026-08', title: 'Company Founded', description: 'AUTO-X established with mission to transform industrial engineering' },
+  { date: '2026-08', title: 'PlatX Architecture', description: 'AI-Native Industrial Engineering Operating System — 5 layers, 30+ modules defined' },
   { date: '2026-08', title: 'AUTO-PLC Architecture', description: '6-stage deterministic engine architecture defined (A4 principle)' },
   { date: '2026-08', title: 'Frontend Scaffolded', description: 'React 19 + Vite + Tailwind v4 + ISA-101 dark theme established' },
-  { date: '2026-08', title: 'GBrain Integrated', description: 'Knowledge management system with OpenRouter free models' },
   { date: '2026-Q3', title: 'AUTO-PLC MVP', description: 'Complete platform demo (URS to FAT with logic generation)' },
-  { date: '2026-Q4', title: 'First Pilots', description: 'Egypt/MENA System Integrator pilots with validation gate E4' },
+  { date: '2026-Q4', title: 'First Pilots', description: 'MENA System Integrator pilots with validation gate E4' },
   { date: '2027-H1', title: 'PlatX Alpha', description: 'Cloud control plane + local agents + multi-vendor drivers' },
-  { date: '2027-H2', title: 'Series A', description: 'Scale to global engineering organizations' },
+  { date: '2027-H2', title: 'Module Expansion', description: 'Additional lifecycle modules (Design, Documentation, Simulation)' },
+  { date: '2028', title: 'Series A', description: 'Scale to global engineering organizations' },
 ]
 
 export function About() {
@@ -76,48 +98,44 @@ export function About() {
       <div className="max-w-container mx-auto">
         {/* Section Header */}
         <motion.div
-          className="text-center max-w-2xl mx-auto mb-16"
+          className="max-w-2xl mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
           <Badge variant="accent" className="mb-4">
-            Our Philosophy
+            Why AUTO-X
           </Badge>
           <h2 className="text-display-large text-text-primary mb-4">
-            Principles that guide us
+            Built by an automation engineer, for automation engineers.
           </h2>
           <p className="text-body-large text-text-secondary">
-            Six non-negotiable principles that define every product decision, engineering choice,
-            and customer interaction at AUTO-X.
+            AUTO-X is the software infrastructure for the next generation of industrial
+            engineering — built by a founder who spent years commissioning the kind of
+            systems this platform is designed to transform.
           </p>
         </motion.div>
 
-        {/* Values Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
-          {values.map((value, index) => (
-            <motion.div
-              key={value.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 + index * 0.08, duration: 0.5 }}
-            >
-              <Card variant="default" hover className="h-full">
-                <CardHeader>
-                  <div className="w-12 h-12 rounded-panel bg-accent-muted flex items-center justify-center mb-4">
-                    <value.icon className="w-6 h-6 text-accent-primary" aria-hidden="true" />
-                  </div>
-                  <CardTitle>{value.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription>{value.description}</CardDescription>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
+        {/* Vision Statement */}
+        <motion.div
+          className="mb-16 rounded-panel border border-accent-border bg-accent-primary/[0.06] p-6 md:p-8"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.15, duration: 0.5 }}
+        >
+          <p className="text-body-large text-text-primary text-center">
+            The vision: become{' '}
+            <span className="text-accent-primary font-semibold">
+              the Siemens + EPLAN + AVEVA + GitHub + ChatGPT + Palantir for Industrial
+              Automation Engineering
+            </span>{' '}
+            — an AI-native platform where requirements generate designs, designs generate
+            software, software generates simulations, and operations generate knowledge
+            that improves future projects.
+          </p>
+        </motion.div>
 
-        {/* Founder */}
+        {/* Founder (lede) */}
         <motion.div
           className="mb-24"
           initial={{ opacity: 0, y: 30 }}
@@ -129,26 +147,13 @@ export function About() {
               <Badge variant="accent" className="mb-4">Founder</Badge>
               <h3 className="text-display-medium text-text-primary mb-4">Ahmed Mohsen Abouelyazed</h3>
               <p className="text-body-large text-text-secondary mb-6">
-                Electrical Power & Control Engineer with deep industrial automation expertise.
-                Siemens TIA-PRO1 certified. ITI Industrial Automation Track graduate.
+                Founder, CEO & CTO. Electrical Power & Control Engineer with deep experience across oil & gas,
+                manufacturing, and infrastructure. Ships the full AUTO-X platform end to end.
               </p>
-              <div className="flex flex-wrap gap-3 mb-6" role="list">
-                <span className="text-body-small bg-bg-elevated px-3 py-1.5 rounded-standard text-text-tertiary">
-                  IEC 61131-3 / 61511 / 62443
-                </span>
-                <span className="text-body-small bg-bg-elevated px-3 py-1.5 rounded-standard text-text-tertiary">
-                  ISA-88 / ISA-18.2
-                </span>
-                <span className="text-body-small bg-bg-elevated px-3 py-1.5 rounded-standard text-text-tertiary">
-                  PLCopen
-                </span>
-                <span className="text-body-small bg-bg-elevated px-3 py-1.5 rounded-standard text-text-tertiary">
-                  Siemens TIA Portal
-                </span>
-                <span className="text-body-small bg-bg-elevated px-3 py-1.5 rounded-standard text-text-tertiary">
-                  TypeScript / Rust / .NET
-                </span>
-              </div>
+              <p className="text-body text-text-secondary mb-6">
+                Background spans ISA-88, IEC 61131-3/61511/62443, PLCopen, and Siemens TIA Portal —
+                built through years of hands-on automation project delivery.
+              </p>
               <div className="flex items-center gap-4">
                 <a href={team[0].linkedin} className="btn-pill-accent" aria-label="LinkedIn">
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -169,6 +174,31 @@ export function About() {
           </div>
         </motion.div>
 
+        {/* Values Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
+          {values.map((value, index) => (
+            <motion.div
+              key={value.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 + index * 0.08, duration: 0.5 }}
+            >
+              <Card variant="default" hover className="h-full">
+                <CardHeader>
+                  <div className="w-12 h-12 rounded-panel bg-accent-muted flex items-center justify-center mb-4">
+                    <value.icon className="w-6 h-6 text-accent-primary" aria-hidden="true" />
+                  </div>
+                  <CardTitle>{value.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription>{value.description}</CardDescription>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+
         {/* Timeline */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -178,7 +208,7 @@ export function About() {
           <div className="text-center mb-12">
             <Badge variant="accent" className="mb-4">Journey</Badge>
             <h3 className="text-display-medium text-text-primary mb-2">Our Timeline</h3>
-            <p className="text-body-large text-text-secondary">From foundation to industrial engineering OS</p>
+            <p className="text-body-large text-text-secondary">From foundation to AI-Native Industrial Engineering OS</p>
           </div>
 
           <div className="relative max-w-3xl mx-auto">

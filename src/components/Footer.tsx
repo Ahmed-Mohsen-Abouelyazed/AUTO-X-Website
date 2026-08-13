@@ -50,21 +50,21 @@ export function Footer() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <a href="/" className="flex items-center gap-2 mb-6" aria-label="AUTO-X Home">
+            <a href="/" className="brand-link flex items-center gap-3 mb-6" aria-label="AUTO-X Home">
               <img
-                src="/logo-32.png"
+                src="/AUTO-X_Dark_Theme_Logo_Design_V2-removebg-preview.png"
                 alt=""
-                className="w-10 h-10"
+                className="h-10 w-10 object-contain"
                 aria-hidden="true"
                 width="32"
                 height="32"
               />
-              <span className="font-display font-semibold text-display-large text-text-primary tracking-tight">
+              <span className="brand-wordmark font-display font-semibold text-display-large text-text-primary tracking-tight">
                 AUTO-X
               </span>
             </a>
             <p className="text-body text-text-secondary max-w-xs mb-6">
-              AI-native industrial engineering platform. Reduce PLC engineering effort by 80–90% with deterministic validation.
+              AI-Native Industrial Engineering Operating System. AI-powered tools that help Industrial Automation and Industry 4.0 teams design, build, verify, and operate complex industrial systems.
             </p>
             <div className="flex items-center gap-4">
               {socialLinks.map((social) => (
@@ -152,36 +152,23 @@ export function Footer() {
             </ul>
           </motion.nav>
 
-          {/* Newsletter */}
+          {/* Get Early Access */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25, duration: 0.5 }}
           >
-            <h4 className="font-semibold text-sub-heading text-text-primary mb-4">Stay Updated</h4>
+            <h4 className="font-semibold text-sub-heading text-text-primary mb-4">Get Early Access</h4>
             <p className="text-body-small text-text-tertiary mb-4">
-              Get the latest on industrial automation engineering, product updates, and engineering insights.
+              Join the waitlist for PlatX and AUTO-PLC beta and founding-member pricing.
             </p>
-            <form className="flex flex-col gap-2" onSubmit={(e) => e.preventDefault()}>
-              <div className="relative">
-                <input
-                  type="email"
-                  placeholder="your@email.com"
-                  className="input pr-12"
-                  aria-label="Email address"
-                />
-                <button
-                  type="submit"
-                  className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-subtle text-text-tertiary hover:text-brand transition-colors"
-                  aria-label="Subscribe"
-                >
-                  <ArrowRight className="w-5 h-5" />
-                </button>
-              </div>
-              <p className="text-micro text-text-quaternary">
-                No spam. Unsubscribe anytime.
-              </p>
-            </form>
+            <a
+              href="/#contact"
+              className="btn-primary inline-flex items-center gap-2"
+            >
+              Join Waitlist
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </a>
           </motion.div>
         </div>
 
@@ -209,7 +196,7 @@ export function Footer() {
           <div className="flex items-center gap-2 text-micro text-text-quaternary">
             <span>Built with precision for engineers</span>
             <span className="w-px h-4 bg-border-subtle" aria-hidden="true" />
-            <span className="text-brand">AUTO-X</span>
+            <span className="text-brand">PlatX · AUTO-X</span>
           </div>
         </motion.div>
       </div>

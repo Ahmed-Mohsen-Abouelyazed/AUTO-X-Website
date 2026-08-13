@@ -6,20 +6,22 @@
   :root {
     --font-primary: 'Geist Variable', 'Geist', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
     --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, 'JetBrains Mono', Menlo, Monaco, Consolas, monospace;
-    --font-display: 'Space Grotesk Variable', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Geist Variable', 'Geist', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
-    /* Brand tokens (AUTO-X Industrial Violet + warm amber) */
-    --brand: oklch(0.62 0.13 205);
-    --brand-foreground: oklch(0.99 0.01 205);
-    --brand-muted: oklch(0.92 0.04 205);
-    --accent-warm: oklch(0.75 0.14 75);
+    /* Light mode brand tokens */
+    --brand: #2F80FF;
+    --brand-foreground: #ffffff;
+    --brand-muted: #16335C;
+    --accent-warm: #2F80FF;
+
+    --ring: var(--brand);
   }
 
-  .dark {
-    --brand: oklch(0.78 0.13 200);
-    --brand-foreground: oklch(0.16 0.03 220);
-    --brand-muted: oklch(0.30 0.05 210);
-    --accent-warm: oklch(0.82 0.15 80);
+  .light {
+    --brand: #2F80FF;
+    --brand-foreground: #ffffff;
+    --brand-muted: #16335C;
+    --accent-warm: #2F80FF;
     --ring: var(--brand);
   }
 
@@ -28,11 +30,14 @@
     font-feature-settings: "liga" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+    scroll-padding-top: 7rem;
+    background-color: #fafbfc;
   }
 
   body {
     @apply bg-bg-page text-text-primary;
-    background-color: #0a0c0e;
+    background-color: #fafbfc;
   }
 
   * {
@@ -60,8 +65,7 @@
   }
 }
 
-/* Motion keyframes + utilities — MUST sit BEFORE the reduced-motion media block
-   so that block stays the universal kill-switch */
+/* Motion keyframes + utilities */
 @keyframes auplc-fade-up {
   from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: none; }
@@ -99,9 +103,9 @@
 
 .auplc-aurora {
   background:
-    radial-gradient(40% 60% at 15% 20%, color-mix(in oklch, var(--brand) 22%, transparent), transparent 70%),
-    radial-gradient(45% 55% at 85% 15%, color-mix(in oklch, var(--accent-warm) 16%, transparent), transparent 70%),
-    radial-gradient(50% 60% at 50% 90%, color-mix(in oklch, var(--brand) 14%, transparent), transparent 70%);
+    radial-gradient(46% 40% at 12% 4%, color-mix(in oklch, var(--brand) 12%, transparent), transparent 70%),
+    radial-gradient(40% 38% at 95% 9%, color-mix(in oklch, var(--brand) 8%, transparent), transparent 72%),
+    radial-gradient(52% 46% at 84% 100%, color-mix(in oklch, var(--brand) 6%, transparent), transparent 70%);
   background-size: 200% 200%;
   animation: auplc-aurora 18s ease-in-out infinite;
 }
@@ -115,7 +119,7 @@
     @apply font-semibold text-ui-label;
     @apply rounded-standard;
     @apply shadow-card;
-    @apply transition-colors duration-fast ease-out;
+    @apply transition-all duration-fast ease-out;
     @apply hover:shadow-[0_0_18px_var(--brand)] hover:-translate-y-0.5;
     @apply active:scale-[0.98];
     @apply disabled:opacity-50 disabled:cursor-not-allowed;
@@ -126,9 +130,9 @@
     @apply bg-transparent text-text-primary;
     @apply font-medium text-ui-label;
     @apply rounded-standard;
-    @apply border border-border-standard;
-    @apply transition-colors duration-fast ease-out;
-    @apply hover:bg-bg-hover hover:border-border-strong;
+    @apply border border-border-subtle;
+    @apply transition-all duration-fast ease-out;
+    @apply hover:bg-bg-elevated hover:border-border-standard;
     @apply disabled:opacity-50 disabled:cursor-not-allowed;
   }
 
@@ -138,7 +142,7 @@
     @apply font-medium text-caption;
     @apply rounded-standard;
     @apply border border-transparent;
-    @apply transition-colors duration-fast ease-out;
+    @apply transition-all duration-fast ease-out;
     @apply hover:bg-bg-hover hover:text-text-primary;
     @apply disabled:opacity-50 disabled:cursor-not-allowed;
   }
@@ -149,7 +153,7 @@
     @apply font-medium text-micro;
     @apply rounded-pill;
     @apply border border-border-subtle;
-    @apply transition-colors duration-fast ease-out;
+    @apply transition-all duration-fast ease-out;
     @apply hover:bg-bg-hover hover:text-text-primary hover:border-border-standard;
   }
 
@@ -170,32 +174,32 @@
 
   /* Card */
   .card {
-    background-color: color-mix(in oklch, var(--color-bg-panel, #111418) 60%, transparent);
-    @apply border border-white/10 rounded-card;
+    background-color: var(--card-bg, #ffffff);
+    @apply border border-border-subtle rounded-card;
     @apply shadow-card p-6;
     @apply transition-colors duration-base ease-out;
-    @apply hover:border-white/20 hover:shadow-elevated hover:-translate-y-0.5;
+    @apply hover:border-border-standard hover:shadow-elevated hover:-translate-y-0.5;
   }
 
   .card-panel {
     @apply card;
-    background-color: color-mix(in oklch, var(--color-bg-panel, #111418) 60%, transparent);
+    background-color: var(--card-bg, #ffffff);
   }
 
   .card-elevated {
-    background-color: color-mix(in oklch, var(--color-bg-elevated, #1a1e24) 80%, transparent);
-    @apply border border-white/15 rounded-panel;
+    background-color: var(--card-bg, #ffffff);
+    @apply border border-border-subtle rounded-panel;
     @apply shadow-elevated p-8;
   }
 
   /* Input */
   .input {
-    background-color: color-mix(in oklch, var(--color-bg-elevated, #1a1e24) 80%, transparent);
+    background-color: var(--input-bg, #ffffff);
     @apply w-full text-text-primary;
     @apply px-4 py-2.5 rounded-standard;
     @apply text-body placeholder:text-text-quaternary;
     @apply border border-border-subtle;
-    @apply transition-colors duration-fast ease-out;
+    @apply transition-all duration-fast ease-out;
     @apply focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/30;
     @apply disabled:opacity-50 disabled:cursor-not-allowed;
   }
@@ -232,10 +236,29 @@
 
   /* Navigation Link */
   .nav-link {
-    @apply px-3 py-2 rounded-standard;
+    @apply relative px-4 py-2.5 rounded-standard;
     @apply font-medium text-caption text-text-tertiary;
     @apply transition-colors duration-fast ease-out;
     @apply hover:text-text-primary hover:bg-bg-hover;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 6px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--brand);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .nav-link:hover::after,
+  .nav-link-active::after {
+    transform: scaleX(1);
   }
 
   .nav-link-active {
@@ -273,11 +296,6 @@
   }
 
   /* Text Utilities */
-  .text-gradient-brand {
-    @apply bg-clip-text text-transparent bg-gradient-to-r;
-    background-image: linear-gradient(to right, var(--brand), var(--brand-foreground));
-  }
-
   .text-balance {
     text-wrap: balance;
   }
@@ -320,15 +338,15 @@
   }
 
   .shadow-ambient {
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
   }
 
   .shadow-card {
-    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.04);
   }
 
   .shadow-elevated {
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.06);
   }
 
   .shadow-focus {
@@ -382,3 +400,68 @@
   .delay-500 { animation-delay: 500ms; }
   .delay-600 { animation-delay: 600ms; }
 }
+
+/* Brand wordmark + logo hover */
+.brand-link {
+  @apply inline-flex items-center gap-2 transition-transform duration-fast ease-out;
+}
+
+.brand-link:hover {
+  transform: translateY(-1px);
+}
+
+.brand-link img {
+  @apply transition-transform duration-fast ease-out;
+}
+
+.brand-link:hover img {
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 10px color-mix(in oklch, var(--brand) 45%, transparent));
+}
+
+.brand-wordmark {
+  @apply transition-all duration-fast ease-out;
+}
+
+.brand-wordmark:hover {
+  color: var(--brand);
+  letter-spacing: 0.015em;
+  text-shadow: 0 0 16px color-mix(in oklch, var(--brand) 40%, transparent);
+}
+
+/* Unified page background: a fixed ambient layer of glow + phosphor dots.
+   Section surface colours are made translucent so this layer shows through. */
+.page-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+  background-color: #fafbfc;
+  background-image:
+    radial-gradient(46% 40% at 12% 4%, rgba(47, 128, 255, 0.04), transparent 70%),
+    radial-gradient(40% 38% at 95% 9%, rgba(47, 128, 255, 0.03), transparent 72%),
+    radial-gradient(52% 46% at 84% 100%, rgba(47, 128, 255, 0.02), transparent 70%);
+}
+
+.page-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.02) 1px, transparent 1.4px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(ellipse 88% 78% at 50% 34%, #000 26%, transparent 80%);
+  mask-image: radial-gradient(ellipse 88% 78% at 50% 34%, #000 26%, transparent 80%);
+  opacity: 0.5;
+}
+
+/* Let the fixed .page-bg show through section surfaces. */
+.bg-bg-page {
+  background-color: transparent;
+}
+.bg-bg-panel {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.bg-bg-deepest {
+  background-color: rgba(250, 251, 252, 0.7);
+}
+
