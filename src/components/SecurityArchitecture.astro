@@ -1,0 +1,107 @@
+---
+import { ShieldCheck, Lock, Server, FileCode, CheckCircle2, ShieldAlert } from 'lucide-react';
+
+const securityPillars = [
+  {
+    icon: Lock,
+    title: 'Air-Gapped & Local-First Execution',
+    subtitle: 'Zero Outbound Internet Telemetry',
+    description:
+      'AUTO-X is designed for complete offline execution using local Ollama LLMs. Your control algorithms, tag tables, and network topologies never cross your plant security boundary.',
+  },
+  {
+    icon: Server,
+    title: 'Strict Data Sovereignty',
+    subtitle: 'No Public Model Training',
+    description:
+      'Your engineering data remains strictly yours. Proprietary project files and vendor DNA are never uploaded to public AI models or stored on unauthorized third-party clouds.',
+  },
+  {
+    icon: FileCode,
+    title: 'Cryptographic Artifact Seals',
+    subtitle: 'SHA-256 Code Verification',
+    description:
+      'Every emitted SCL block, data table, and configuration XML is cryptographically hashed with SHA-256 seals, preventing unauthorized modification before TIA Portal import.',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'IEC 62443 Security Alignment',
+    subtitle: 'Industrial Zone & Conduit Rules',
+    description:
+      'Native modeling of industrial security zones, conduits, communication protocols, and port access controls compliant with international OT cybersecurity requirements.',
+  },
+];
+---
+
+<section id="security" class="py-24 bg-bg-panel border-b border-border-subtle">
+  <div class="max-w-container mx-auto px-6 md:px-8 lg:px-12">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-pill bg-accent-primary/10 border border-accent-border text-accent-primary text-xs font-mono font-medium mb-4">
+        <ShieldCheck className="w-3.5 h-3.5" />
+        <span>Enterprise Security & Sovereignty</span>
+      </div>
+      <h2 class="text-display-medium md:text-display-large text-text-primary tracking-tight font-semibold mb-4">
+        Industrial-Grade Security by Design
+      </h2>
+      <p class="text-body-large text-text-secondary leading-relaxed">
+        Critical infrastructure demands uncompromising data isolation. AUTO-X combines deterministic AI compiler verification with local-first air-gap architecture.
+      </p>
+    </div>
+
+    <!-- Security Pillars Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+      {securityPillars.map((p) => (
+        <div class="p-8 rounded-panel bg-bg-page border border-border-standard shadow-sm hover:border-accent-border transition-all">
+          <div class="w-12 h-12 rounded-panel bg-accent-primary/10 border border-accent-border flex items-center justify-center text-accent-primary mb-6">
+            <p.icon className="w-6 h-6" />
+          </div>
+          <h3 class="text-sub-heading font-semibold text-text-primary mb-1">{p.title}</h3>
+          <span class="text-xs font-mono text-accent-primary font-medium block mb-3">{p.subtitle}</span>
+          <p class="text-xs text-text-secondary leading-relaxed">{p.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Functional Safety SIL Post-MVP Governance Callout -->
+    <div class="p-6 md:p-8 rounded-panel bg-bg-elevated border border-warning/30 shadow-sm">
+      <div class="flex flex-col md:flex-row items-start gap-6">
+        <div class="w-12 h-12 rounded-panel bg-warning/10 border border-warning/30 flex items-center justify-center text-warning flex-shrink-0">
+          <ShieldAlert className="w-6 h-6" />
+        </div>
+        <div class="flex-1">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="font-mono text-xs uppercase font-bold text-warning tracking-wide">
+              Functional Safety (SIL) Strict Governance Policy
+            </span>
+            <span class="font-mono text-[10px] px-2 py-0.5 rounded-pill bg-warning/10 text-warning border border-warning/30">
+              Post-MVP · Non-AI
+            </span>
+          </div>
+          <h4 class="text-sm font-semibold text-text-primary mb-2">
+            Safety Logic is Never Automated by Generative AI
+          </h4>
+          <p class="text-xs text-text-secondary leading-relaxed mb-4">
+            Under AUTO-X constitution rules, Functional Safety (AUTO-SAFE) is an explicitly designated Post-MVP capability. Life-critical safety interlocks, Emergency Stop routines, and SIL (IEC 61508 / IEC 61511) validations are strictly segregated from AI code generators and require certified human engineering sign-off.
+          </p>
+          <div class="flex flex-wrap items-center gap-4 text-xs font-mono text-text-tertiary">
+            <span class="flex items-center gap-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5 text-success" />
+              <span>IEC 61508 SIL 1-3 Governance</span>
+            </span>
+            <span class="flex items-center gap-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5 text-success" />
+              <span>Independent Human Certification</span>
+            </span>
+            <span class="flex items-center gap-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5 text-success" />
+              <span>Zero Hallucinated Safety Interlocks</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

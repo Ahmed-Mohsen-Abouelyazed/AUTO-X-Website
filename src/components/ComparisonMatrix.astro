@@ -1,0 +1,142 @@
+---
+import { CheckCircle2, XCircle, AlertTriangle, Cpu } from 'lucide-react';
+
+const comparisonRows = [
+  {
+    feature: 'Syntax & Language Typing',
+    manual: { text: 'Manual coding; prone to typos & unmapped tags', type: 'warn' },
+    genericAi: { text: 'Stochastic hallucinations & invalid vendor dialect syntax', type: 'error' },
+    autox: { text: 'Deterministic AST compiler; 100% syntactically valid IEC 61131-3', type: 'success' },
+  },
+  {
+    feature: 'Mathematical Determinism',
+    manual: { text: 'Variable quality depending on individual engineer habits', type: 'warn' },
+    genericAi: { text: 'Non-deterministic (identical prompts yield different code)', type: 'error' },
+    autox: { text: 'Identical inputs produce mathematically identical output code', type: 'success' },
+  },
+  {
+    feature: 'Standards Enforcement',
+    manual: { text: 'Manual adherence to internal company conventions', type: 'warn' },
+    genericAi: { text: 'Subjective textual advice without compiler verification', type: 'error' },
+    autox: { text: 'Hard mechanical compiler gates (IEC 61131-3, ISA-88, ISA-18.2)', type: 'success' },
+  },
+  {
+    feature: 'Vendor IDE Integration',
+    manual: { text: 'Manual typing into TIA Portal / Studio 5000', type: 'neutral' },
+    genericAi: { text: 'Copy-pasting raw text into IDE with zero API bridge', type: 'error' },
+    autox: { text: '.NET 8 TIA Openness Bridge for direct XML/PLC project import', type: 'success' },
+  },
+  {
+    feature: 'Industrial Security & Privacy',
+    manual: { text: 'Local files on engineering laptops', type: 'neutral' },
+    genericAi: { text: 'Public cloud inference; risks proprietary tag & network leaks', type: 'error' },
+    autox: { text: 'Local-first execution via offline Ollama LLMs & air-gapped security', type: 'success' },
+  },
+  {
+    feature: 'Functional Safety (SIL Governance)',
+    manual: { text: 'Certified safety engineers manually verify interlocks', type: 'neutral' },
+    genericAi: { text: 'Unsafe; hallucinates uncontrolled safety logic', type: 'error' },
+    autox: { text: 'Post-MVP strictly non-AI human governance & SIL separation', type: 'success' },
+  },
+];
+---
+
+<section id="comparison" class="py-24 bg-bg-panel border-b border-border-subtle">
+  <div class="max-w-container mx-auto px-6 md:px-8 lg:px-12">
+    
+    <!-- Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-pill bg-accent-primary/10 border border-accent-border text-accent-primary text-xs font-mono font-medium mb-4">
+        <Cpu className="w-3.5 h-3.5" />
+        <span>Technical Differentiation</span>
+      </div>
+      <h2 class="text-display-medium md:text-display-large text-text-primary tracking-tight font-semibold mb-4">
+        Why Deterministic AI Matters in Automation
+      </h2>
+      <p class="text-body-large text-text-secondary leading-relaxed">
+        Industrial control systems cannot tolerate probabilistic hallucinations. Here is how AUTO-X compares against manual programming and generic consumer AI.
+      </p>
+    </div>
+
+    <!-- Comparison Table Container -->
+    <div class="rounded-panel border border-border-standard bg-bg-page shadow-sm overflow-hidden mb-12">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse min-w-[700px]">
+          <thead>
+            <tr class="border-b border-border-subtle bg-bg-elevated font-mono text-xs">
+              <th scope="col" class="py-4 px-6 text-text-tertiary uppercase tracking-wider font-semibold w-1/4">
+                Capability Dimension
+              </th>
+              <th scope="col" class="py-4 px-6 text-text-secondary font-medium w-1/4">
+                Traditional Manual
+              </th>
+              <th scope="col" class="py-4 px-6 text-error font-medium w-1/4">
+                Generic LLMs (ChatGPT / Copilot)
+              </th>
+              <th scope="col" class="py-4 px-6 text-accent-primary font-bold w-1/4 bg-accent-primary/5 border-l border-accent-primary/20">
+                AUTO-X Deterministic Platform
+              </th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-border-subtle text-xs">
+            {comparisonRows.map((row) => (
+              <tr class="hover:bg-bg-hover/50 transition-colors">
+                <!-- Feature Name -->
+                <td class="py-4 px-6 font-semibold text-text-primary font-mono text-[11px]">
+                  {row.feature}
+                </td>
+
+                <!-- Manual Column -->
+                <td class="py-4 px-6 text-text-secondary">
+                  <div class="flex items-start gap-2">
+                    {row.manual.type === 'warn' ? (
+                      <AlertTriangle className="w-4 h-4 text-warning mt-0.5 flex-shrink-0" />
+                    ) : (
+                      <span class="w-1.5 h-1.5 rounded-full bg-text-tertiary mt-1.5 flex-shrink-0" />
+                    )}
+                    <span>{row.manual.text}</span>
+                  </div>
+                </td>
+
+                <!-- Generic AI Column -->
+                <td class="py-4 px-6 text-text-secondary">
+                  <div class="flex items-start gap-2">
+                    <XCircle className="w-4 h-4 text-error mt-0.5 flex-shrink-0" />
+                    <span class="text-text-secondary">{row.genericAi.text}</span>
+                  </div>
+                </td>
+
+                <!-- AUTO-X Column -->
+                <td class="py-4 px-6 bg-accent-primary/5 border-l border-accent-primary/20 font-medium text-text-primary">
+                  <div class="flex items-start gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-success mt-0.5 flex-shrink-0" />
+                    <span>{row.autox.text}</span>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Core Tenet Highlight Callout -->
+    <div class="p-6 rounded-panel bg-bg-elevated border border-border-standard flex flex-col md:flex-row items-center justify-between gap-4">
+      <div>
+        <span class="font-mono text-xs font-semibold text-accent-primary uppercase tracking-wide block mb-1">
+          The Non-Negotiable Safety Tenet
+        </span>
+        <p class="text-xs text-text-secondary leading-relaxed max-w-2xl">
+          <strong class="text-text-primary">AI proposes · Engines verify · Engineers approve.</strong> AI models are strictly limited to drafting candidate AST representations. Every line of downloadable logic passes non-stochastic schema validation before reaching a human engineer's desk.
+        </p>
+      </div>
+      <a
+        href="#products"
+        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-standard bg-bg-panel border border-border-standard text-xs font-semibold text-text-primary hover:bg-bg-hover hover:border-accent-border transition-all flex-shrink-0"
+      >
+        <span>Inspect 6-Stage Pipeline</span>
+      </a>
+    </div>
+
+  </div>
+</section>

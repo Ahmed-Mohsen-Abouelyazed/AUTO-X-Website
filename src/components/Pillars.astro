@@ -1,70 +1,67 @@
 ---
-import { Brain, BookOpen, ShieldCheck, Database, CheckCircle2, GitBranch, Cpu, ArrowRight } from 'lucide-react';
+import { Brain, BookOpen, GitBranch, Database, CheckCircle2, ArrowRight, Cpu } from 'lucide-react';
+import { AirCodeInspector } from './AirCodeInspector';
 
 const pillars = [
   {
-    id: 'ai',
     number: '01',
-    icon: Brain,
-    title: 'Engineering AI',
+    name: 'Engineering AI',
+    tag: 'Intelligence Layer',
     subtitle: 'Reasoning & Intent Conversion',
     description:
       'Domain-tuned engineering LLMs, industrial RAG, and multi-agent reasoning convert customer requirements, P&IDs, and control narratives into structured engineering models.',
     details: [
       'Engineering LLMs trained on industrial specifications',
-      'Industrial RAG with standards & vendor documentation',
-      'Multi-agent system with specialized discipline agents',
-      'AI proposes, engines verify, engineers approve',
+      'Industrial RAG with strict provenance and citation tracking',
+      'Multi-agent collaborative planning across engineering domains',
+      'Continuous extraction of engineering intent from unstructured text',
     ],
-    tag: 'Intelligence Layer',
+    icon: Brain,
   },
   {
-    id: 'knowledge',
     number: '02',
-    icon: BookOpen,
-    title: 'Engineering Knowledge',
+    name: 'Engineering Knowledge',
+    tag: 'Domain Rules',
     subtitle: 'Standards Encoded as Hard Rules',
     description:
-      'International standards (IEC 61131-3, ISA-88, ISA-95, ISA-18.2, IEC 62443) and vendor rules are not loose AI prompts — they are encoded as deterministic validators.',
+      'International standards (IEC 61131-3, ISA-88, ISA-95, ISA-18.2, IEC 62443) and vendor libraries are encoded directly into the platform as mechanical validation gates.',
     details: [
-      'ISA-88 state models & equipment hierarchies',
-      'ISA-18.2 alarm philosophy & rationalization',
-      'IEC 61131-3 language syntax & typing rules',
-      'Vendor-specific guidelines (Siemens, Rockwell, Schneider)',
+      'IEC 61131-3 syntax and typing verification',
+      'ISA-88 batch control & equipment hierarchy models',
+      'ISA-18.2 alarm management and rationalization rules',
+      'IEC 62443 cybersecurity zones and conduit models',
     ],
-    tag: 'Rule Engine',
+    icon: BookOpen,
   },
   {
-    id: 'automation',
     number: '03',
-    icon: ShieldCheck,
-    title: 'Deterministic Automation',
-    subtitle: 'Compile-Verify Gate Pipeline',
+    name: 'Engineering Automation',
+    tag: 'Execution Engine',
+    subtitle: 'Deterministic Compiler Pipeline',
     description:
-      'Non-stochastic emission engines ensure identical inputs produce identical, reproducible code. Mechanical compile-verify gates catch errors before reaching the PLC.',
+      'A multi-stage deterministic pipeline compiles validated requirements into deployable PLC code, documentation, and test packages without hallucinations.',
     details: [
-      'Deterministic compiler pipeline (Ingestion → Graph → AIR → Drivers)',
-      'Schema validation & strict type checking',
-      'Automated syntax & compile verification',
-      'Human-in-the-loop sign-off at every gate',
+      'Deterministic AST generation without stochastic hallucinations',
+      'Virtual PLC simulation and automated test oracles',
+      'One-click export to vendor IDEs (Siemens TIA Portal)',
+      'Automated FDS, SDS, FAT, and SAT test manual generation',
     ],
-    tag: 'Deterministic Gates',
+    icon: GitBranch,
   },
   {
-    id: 'data',
     number: '04',
-    icon: Database,
-    title: 'Industrial Data',
-    subtitle: 'Unified Engineering Data Model',
+    name: 'Industrial Data',
+    tag: 'Data Backbone',
+    subtitle: 'Unified Model & Knowledge Graph',
     description:
-      'A single source of truth connecting requirements, P&IDs, instruments, I/O, control narratives, PLC code, HMI objects, and assets across the entire project lifecycle.',
+      'A unified engineering data model (AIR Schema) connects every engineering discipline into a single source of truth, backed by a persistent knowledge graph.',
     details: [
       'Unified Engineering Data Model (AIR Schema)',
-      'Engineering Knowledge Graph for institutional memory',
-      'UNS / MQTT Sparkplug B backbone integration',
-      'Bidirectional AST synchronization with runtime controllers',
+      'Knowledge Graph preserving institutional engineering memory',
+      'Unified Namespace (UNS) & MQTT Sparkplug B integration',
+      'Git-native version control and cross-discipline diff tracking',
     ],
-    tag: 'Single Source of Truth',
+    icon: Database,
   },
 ];
 ---
@@ -90,7 +87,6 @@ const pillars = [
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
       {pillars.map((pillar) => (
         <div class="p-8 rounded-panel bg-bg-page border border-border-standard shadow-sm hover:border-accent-border transition-all flex flex-col justify-between group">
-          
           <div>
             <!-- Card Top: Number & Tag -->
             <div class="flex items-center justify-between gap-4 mb-6">
@@ -99,19 +95,24 @@ const pillars = [
                   <pillar.icon className="w-6 h-6" />
                 </div>
                 <div>
-                  <span class="font-mono text-xs text-text-tertiary uppercase tracking-wider block">Pillar {pillar.number}</span>
-                  <h3 class="text-sub-heading-large text-text-primary font-semibold">{pillar.title}</h3>
+                  <span class="font-mono text-xs text-text-tertiary uppercase tracking-wider block">
+                    Pillar {pillar.number}
+                  </span>
+                  <h3 class="text-sub-heading-large text-text-primary font-semibold">
+                    {pillar.name}
+                  </h3>
                 </div>
               </div>
+
               <span class="px-2.5 py-1 rounded-pill bg-bg-elevated border border-border-subtle font-mono text-[11px] text-text-tertiary">
                 {pillar.tag}
               </span>
             </div>
 
+            <!-- Subtitle & Description -->
             <p class="text-xs font-mono font-semibold text-accent-primary uppercase tracking-wide mb-3">
               {pillar.subtitle}
             </p>
-
             <p class="text-body text-text-secondary mb-6 leading-relaxed">
               {pillar.description}
             </p>
@@ -137,6 +138,23 @@ const pillars = [
 
         </div>
       ))}
+    </div>
+
+    <!-- Interactive AIR Schema Code Projection Demonstrator -->
+    <div class="mb-16">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="text-xs font-mono uppercase tracking-widest text-accent-primary font-semibold block mb-2">
+          AIR Schema Architecture
+        </span>
+        <h3 class="text-section-heading text-text-primary font-semibold mb-3">
+          One Engineering Model &rarr; Multi-Vendor Projection
+        </h3>
+        <p class="text-sm text-text-secondary">
+          Inspect how the vendor-neutral Asset Interface Representation (AIR) compiles deterministically into target PLC languages, security models, and test packages.
+        </p>
+      </div>
+
+      <AirCodeInspector client:load />
     </div>
 
     <!-- Core Thesis Callout -->

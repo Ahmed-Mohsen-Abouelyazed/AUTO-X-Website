@@ -1,0 +1,118 @@
+---
+import { Building2, Cog, Factory, CheckCircle2, ArrowRight, Layers } from 'lucide-react';
+
+const solutions = [
+  {
+    id: 'si',
+    icon: Building2,
+    role: 'For System Integrators (SIs)',
+    tagline: 'Protect Margins & Deliver Projects 2× Faster',
+    description:
+      'Eliminate the massive risk of fixed-price bid erosion caused by unexpected commissioning rework and manual boilerplate programming.',
+    benefits: [
+      'Win competitive bids by compressing engineering turnaround from weeks to days',
+      'Automate repetitive I/O tag assignment, SCL function blocks, and alarm registers',
+      'Catch design and interlock mismatches in simulation before heading to the customer plant',
+      'Scale engineering project capacity without linear hiring constraints',
+    ],
+    highlight: 'Typical Impact: ~75% reduction in repetitive PLC scaffolding time',
+  },
+  {
+    id: 'oem',
+    icon: Cog,
+    role: 'For Machine Builders & OEMs',
+    tagline: 'Standardize Repeatable Machine Software Packages',
+    description:
+      'Generate modular, standardized PLC and HMI software architectures for your machine product lines with instant FAT documentation packages.',
+    benefits: [
+      'Encapsulate proprietary machine sequencing into reusable, standardized ISA-88 modules',
+      'Auto-generate customer-ready Functional Design Specs (FDS) and FAT test packages',
+      'Enable rapid customer customizations without rewriting core machine base code',
+      'Multi-vendor projections for customers requesting Siemens, Rockwell, or CODESYS',
+    ],
+    highlight: 'Typical Impact: Same-day machine software adaptation and FAT pack export',
+  },
+  {
+    id: 'enterprise',
+    icon: Factory,
+    role: 'For Enterprise Manufacturers & Plants',
+    tagline: 'Bridge OT/IT & Preserve Institutional Engineering Knowledge',
+    description:
+      'Unify disconnected plant control software, maintain single-source-of-truth tag definitions, and eliminate reliance on tribal senior engineer memory.',
+    benefits: [
+      'Unified Engineering Knowledge Graph preserves plant control standards permanently',
+      'Git-native version control, change auditing, and diff tracking across PLC programs',
+      'Native Unified Namespace (UNS) & MQTT Sparkplug B model projection for Industry 4.0',
+      'Air-gapped on-premise deployment ensures zero plant operational data leaks',
+    ],
+    highlight: 'Typical Impact: Zero engineering knowledge loss during staff turnover',
+  },
+];
+---
+
+<section id="solutions" class="py-24 bg-bg-page border-b border-border-subtle">
+  <div class="max-w-container mx-auto px-6 md:px-8 lg:px-12">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-pill bg-accent-primary/10 border border-accent-border text-accent-primary text-xs font-mono font-medium mb-4">
+        <Layers className="w-3.5 h-3.5" />
+        <span>Tailored Engineering Solutions</span>
+      </div>
+      <h2 class="text-display-medium md:text-display-large text-text-primary tracking-tight font-semibold mb-4">
+        Engineered for Your Industrial Workflow
+      </h2>
+      <p class="text-body-large text-text-secondary leading-relaxed">
+        Whether you are bidding fixed-price integration projects, manufacturing repeatable machine lines, or managing global plant assets.
+      </p>
+    </div>
+
+    <!-- Solution Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+      {solutions.map((sol) => (
+        <div class="p-8 rounded-panel bg-bg-panel border border-border-standard shadow-sm hover:border-accent-border transition-all flex flex-col justify-between group">
+          <div>
+            <!-- Icon & Header -->
+            <div class="w-12 h-12 rounded-panel bg-accent-primary/10 border border-accent-border flex items-center justify-center text-accent-primary mb-6 group-hover:scale-105 transition-transform">
+              <sol.icon className="w-6 h-6" />
+            </div>
+
+            <h3 class="text-sub-heading-large font-semibold text-text-primary mb-1">{sol.role}</h3>
+            <span class="text-xs font-mono text-accent-primary font-medium block mb-4">{sol.tagline}</span>
+            <p class="text-xs text-text-secondary leading-relaxed mb-6">{sol.description}</p>
+
+            <!-- Benefits List -->
+            <div class="space-y-2.5 pt-4 border-t border-border-subtle mb-6">
+              <span class="text-[10px] font-mono uppercase tracking-wider text-text-tertiary block mb-2">
+                Key Operational Benefits
+              </span>
+              {sol.benefits.map((b) => (
+                <div class="flex items-start gap-2 text-xs text-text-secondary">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-success mt-0.5 flex-shrink-0" />
+                  <span>{b}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Bottom Highlight & CTA -->
+          <div>
+            <div class="p-3 rounded-card bg-bg-elevated border border-border-subtle mb-4">
+              <span class="text-[11px] font-mono text-accent-primary font-medium block">
+                {sol.highlight}
+              </span>
+            </div>
+            <a
+              href="#contact"
+              class="inline-flex items-center justify-between w-full px-4 py-2.5 rounded-standard bg-bg-page border border-border-standard text-xs font-semibold text-text-primary hover:bg-bg-hover hover:border-accent-border transition-all shadow-sm"
+            >
+              <span>Explore Pilot for {sol.role.replace('For ', '')}</span>
+              <ArrowRight className="w-3.5 h-3.5 text-accent-primary" />
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

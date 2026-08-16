@@ -4,9 +4,12 @@ import { Navigation } from '../components/Navigation';
 import Hero from '../components/Hero.astro';
 import TrustBand from '../components/TrustBand.astro';
 import Problem from '../components/Problem.astro';
+import ComparisonMatrix from '../components/ComparisonMatrix.astro';
 import Pillars from '../components/Pillars.astro';
 import PlatXArchitecture from '../components/PlatXArchitecture.astro';
+import Solutions from '../components/Solutions.astro';
 import Products from '../components/Products.astro';
+import SecurityArchitecture from '../components/SecurityArchitecture.astro';
 import About from '../components/About.astro';
 import Faq from '../components/Faq.astro';
 import { Contact } from '../components/Contact';
@@ -14,38 +17,47 @@ import Footer from '../components/Footer.astro';
 ---
 
 <Layout>
-  <!-- Navigation Island -->
+  <!-- Sticky Navigation Island -->
   <Navigation client:load />
 
   <main id="main-content" class="flex-1">
-    <!-- 1. Hero with Deterministic Pipeline Island -->
+    <!-- 1. Hero with Deterministic 6-Stage Pipeline Island -->
     <Hero />
 
-    <!-- 2. Trust & Standards Band -->
+    <!-- 2. Trust & Standards Band (IEC / ISA / PLCopen) -->
     <TrustBand />
 
-    <!-- 3. Problem Statement & Cost of Commissioning -->
+    <!-- 3. Problem Statement, Workload Breakdown & ROI Calculator -->
     <Problem />
 
-    <!-- 4. Four Pillars: AI, Knowledge, Automation, Data -->
+    <!-- 4. 3-Way Technical Comparison Matrix (Manual vs Generic AI vs AUTO-X) -->
+    <ComparisonMatrix />
+
+    <!-- 5. Four Pillars & AIR Multi-Vendor Code Inspector Island -->
     <Pillars />
 
-    <!-- 5. PlatX Operating System Architecture & 5 Layers -->
+    <!-- 6. PlatX Operating System Architecture & 5 Layers -->
     <PlatXArchitecture />
 
-    <!-- 6. Products, Live PLC Showcase & 9-Phase Module Grid -->
+    <!-- 7. Role-Based Solutions (System Integrators, OEMs, Enterprise) -->
+    <Solutions />
+
+    <!-- 8. Products, Live PLC Showcase & 9-Phase 30+ Module Grid -->
     <Products />
 
-    <!-- 7. Founder, Values & Engineering Milestones -->
+    <!-- 9. Enterprise Security, Air-Gap & SIL Safety Governance -->
+    <SecurityArchitecture />
+
+    <!-- 10. Founder Profile, Values & Engineering Milestones -->
     <About />
 
-    <!-- 8. Frequently Asked Questions (Accessible Details) -->
+    <!-- 11. Frequently Asked Questions (Accessible Details Accordion) -->
     <Faq />
 
-    <!-- 9. Early Access Waitlist & Direct Channels -->
-    <Contact client:visible />
+    <!-- 12. Early Access Waitlist & Direct Channels -->
+    <Contact client:load />
   </main>
 
-  <!-- 10. Footer with Sitemap & FIS Governance Statement -->
+  <!-- 13. Footer with Sitemap & FIS Governance Statement -->
   <Footer />
 </Layout>
