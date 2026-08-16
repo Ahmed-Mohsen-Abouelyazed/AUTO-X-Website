@@ -5,10 +5,12 @@ import {
   CheckCircle2,
   MapPin,
   ShieldCheck,
+  AlertCircle,
 } from 'lucide-react'
 
 export function Contact() {
   const [submitted, setSubmitted] = useState(false)
+  const [emailError, setEmailError] = useState<string | null>(null)
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -19,18 +21,46 @@ export function Contact() {
     notes: '',
   })
 
+  const validateEmail = (email: string): boolean => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return re.test(email.trim())
+  }
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    if (!validateEmail(formData.email)) {
+      setEmailError('Please enter a valid work email address.')
+      return
+    }
+    setEmailError(null)
     setSubmitted(true)
   }
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
+    const { name, value } = e.target
     setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }))
+    if (name === 'email' && emailError) {
+      setEmailError(null)
+    }
+  }
+
+  const handleReset = () => {
+    setFormData({
+      firstName: '',
+      lastName: '',
+      email: '',
+      company: '',
+      role: '',
+      interest: 'autoplc',
+      notes: '',
+    })
+    setEmailError(null)
+    setSubmitted(false)
   }
 
   return (
@@ -56,7 +86,7 @@ export function Contact() {
             <div className="p-8 md:p-10 rounded-panel bg-bg-panel border border-border-standard shadow-sm">
               {submitted ? (
                 <div className="py-12 text-center flex flex-col items-center">
-                  <div className="w-14 h-14 rounded-circle bg-success-bg text-success flex items-center justify-center mb-4">
+                  <div className="w-14 h-14 rounded-circle bg-success-bg text-success flex items-center justify-center mb-4 border border-success/30">
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
                   <h3 className="text-sub-heading-large text-text-primary font-semibold mb-2">
@@ -67,8 +97,8 @@ export function Contact() {
                   </p>
                   <button
                     type="button"
-                    onClick={() => setSubmitted(false)}
-                    className="px-5 py-2.5 rounded-standard bg-bg-elevated border border-border-standard text-xs font-semibold text-text-primary hover:bg-bg-hover transition-colors"
+                    onClick={handleReset}
+                    className="px-5 py-2.5 rounded-standard bg-bg-elevated border border-border-standard text-xs font-semibold text-text-primary hover:bg-bg-hover hover:border-accent-border transition-all cursor-pointer"
                   >
                     Submit Another Request
                   </button>
@@ -84,7 +114,7 @@ export function Contact() {
                         Beta access is free for qualifying engineering teams during testing.
                       </p>
                     </div>
-                    <span className="font-mono text-[10px] uppercase text-accent-primary font-semibold px-2 py-1 bg-accent-primary/10 rounded-pill">
+                    <span className="font-mono text-[10px] uppercase text-accent-primary font-semibold px-2 py-1 bg-accent-primary/10 rounded-pill border border-accent-border">
                       Pilot Program
                     </span>
                   </div>
@@ -145,8 +175,20 @@ export function Contact() {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="engineer@company.com"
-                        className="w-full px-3.5 py-2.5 rounded-standard bg-bg-page border border-border-subtle text-xs text-text-primary focus:outline-none focus:border-accent-primary focus:ring-2 focus:ring-accent-primary/20"
+                        className={`w-full px-3.5 py-2.5 rounded-standard bg-bg-page border text-xs text-text-primary focus:outline-none focus:ring-2 ${
+                          emailError
+                            ? 'border-error focus:border-error focus:ring-error/20'
+                            : 'border-border-subtle focus:border-accent-primary focus:ring-accent-primary/20'
+                        }`}
+                        aria-invalid={emailError ? 'true' : 'false'}
+                        aria-describedby={emailError ? 'email-error' : undefined}
                       />
+                      {emailError && (
+                        <p id="email-error" className="mt-1 text-[11px] text-error flex items-center gap-1 font-mono" role="alert">
+                          <AlertCircle className="w-3 h-3 flex-shrink-0" />
+                          <span>{emailError}</span>
+                        </p>
+                      )}
                     </div>
 
                     <div>
@@ -240,7 +282,7 @@ export function Contact() {
 
                   <button
                     type="submit"
-                    className="w-full py-3.5 px-6 rounded-standard bg-accent-primary text-white text-xs font-semibold shadow-card hover:bg-accent-hover transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full py-3.5 px-6 rounded-standard bg-accent-primary text-white text-xs font-semibold shadow-card hover:bg-accent-hover transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99]"
                   >
                     <span>Submit Early Access Request</span>
                     <Send className="w-3.5 h-3.5" />

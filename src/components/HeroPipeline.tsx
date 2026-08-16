@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { ShieldCheck, Cpu } from 'lucide-react'
 
-interface Stage {
+export interface Stage {
   n: string
   name: string
   desc: string
@@ -61,16 +61,23 @@ const STAGES: Stage[] = [
   },
 ]
 
+/**
+ * Interactive Hero Pipeline component demonstrating the 6-stage deterministic compiler.
+ * Features automated 5-second rotation and manual keyboard/click stage inspection.
+ */
 export function HeroPipeline() {
   const [activeIndex, setActiveIndex] = useState(2) // Default to stage 03
+  const [isPaused, setIsPaused] = useState(false)
 
   useEffect(() => {
+    if (isPaused) return
+
     const timer = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % STAGES.length)
     }, 5000)
 
     return () => clearInterval(timer)
-  }, [])
+  }, [isPaused])
 
   const currentStage = STAGES[activeIndex]
 
@@ -79,6 +86,10 @@ export function HeroPipeline() {
       className="w-full overflow-hidden rounded-panel border border-border-standard bg-bg-panel shadow-elevated"
       role="region"
       aria-label="AUTO-X deterministic 6-stage compiler pipeline"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onFocus={() => setIsPaused(true)}
+      onBlur={() => setIsPaused(false)}
     >
       {/* Window Chrome Header */}
       <div className="flex items-center justify-between border-b border-border-subtle bg-bg-hover px-4 py-3 gap-2">
@@ -115,7 +126,7 @@ export function HeroPipeline() {
         </div>
 
         {/* 6 Stage Chips Grid */}
-        <div className="grid grid-cols-3 sm:grid-cols-6 gap-1.5 sm:gap-2">
+        <div className="grid grid-cols-3 sm:grid-cols-6 gap-1.5 sm:gap-2" role="tablist" aria-label="Pipeline stages">
           {STAGES.map((stage, idx) => {
             const isVerified = idx < activeIndex
             const isRunning = idx === activeIndex
@@ -124,6 +135,9 @@ export function HeroPipeline() {
               <button
                 type="button"
                 key={stage.n}
+                role="tab"
+                aria-selected={isRunning}
+                aria-label={`Stage ${stage.n}: ${stage.name}`}
                 onClick={() => setActiveIndex(idx)}
                 className={`min-w-0 px-1.5 py-2.5 sm:px-2 sm:py-3 min-h-[110px] sm:min-h-[118px] rounded-card border transition-all flex flex-col justify-between items-center text-center cursor-pointer ${
                   isRunning

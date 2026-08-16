@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { ShieldCheck } from 'lucide-react'
 
-interface Stage {
+export interface Stage {
   id: string
   number: string
   title: string
@@ -82,8 +82,24 @@ const pipelineStages: Stage[] = [
   },
 ]
 
+/**
+ * Interactive 6-stage deterministic pipeline inspector component.
+ * Allows engineering deep-dive into each gate's input, engine, output, and verification rule.
+ */
 export function PlcShowcase() {
   const [selectedStage, setSelectedStage] = useState<Stage>(pipelineStages[2])
+
+  const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
+    if (e.key === 'ArrowRight') {
+      e.preventDefault()
+      const nextIndex = (index + 1) % pipelineStages.length
+      setSelectedStage(pipelineStages[nextIndex])
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault()
+      const prevIndex = (index - 1 + pipelineStages.length) % pipelineStages.length
+      setSelectedStage(pipelineStages[prevIndex])
+    }
+  }
 
   return (
     <div className="rounded-panel border border-border-standard bg-bg-panel shadow-elevated overflow-hidden">
@@ -130,15 +146,23 @@ export function PlcShowcase() {
         </div>
 
         {/* 6-Stage Horizontal Interactive Selector */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 mb-6">
-          {pipelineStages.map((stage) => {
+        <div
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 mb-6"
+          role="tablist"
+          aria-label="PLC compiler stages"
+        >
+          {pipelineStages.map((stage, index) => {
             const isSelected = selectedStage.id === stage.id
             return (
               <button
                 type="button"
                 key={stage.id}
+                role="tab"
+                aria-selected={isSelected}
+                aria-label={`Stage ${stage.number}: ${stage.title}`}
                 onClick={() => setSelectedStage(stage)}
-                className={`p-3 rounded-card text-left transition-all border flex flex-col justify-between cursor-pointer ${
+                onKeyDown={(e) => handleKeyDown(e, index)}
+                className={`p-3 rounded-card text-left transition-all border flex flex-col justify-between cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary ${
                   isSelected
                     ? 'bg-accent-primary/5 border-accent-primary shadow-sm ring-1 ring-accent-primary/30'
                     : 'bg-bg-page border-border-subtle hover:border-border-standard hover:bg-bg-elevated'

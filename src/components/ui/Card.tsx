@@ -1,10 +1,16 @@
+import * as React from 'react'
 import { cn } from '@/lib/utils'
 
-interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+  /** Surface elevation level */
   variant?: 'default' | 'panel' | 'elevated'
+  /** Whether to show subtle hover transition */
   hover?: boolean
 }
 
+/**
+ * Surface card container with consistent border and shadow tokens.
+ */
 export function Card({
   variant = 'default',
   hover = true,
@@ -13,13 +19,13 @@ export function Card({
   ...props
 }: CardProps) {
   const variants = {
-    default: 'bg-bg-panel border border-border-subtle rounded-card shadow-card p-6',
-    panel: 'bg-bg-panel border border-border-subtle rounded-card shadow-card p-6',
-    elevated: 'bg-bg-elevated border border-border-standard rounded-panel shadow-elevated p-8',
+    default: 'bg-bg-page border border-border-standard rounded-card shadow-sm p-6',
+    panel: 'bg-bg-panel border border-border-standard rounded-panel shadow-sm p-6 md:p-8',
+    elevated: 'bg-bg-elevated border border-border-standard rounded-panel shadow-elevated p-6 md:p-8',
   }
 
   const hoverStyles = hover
-    ? 'transition-colors duration-base ease-out hover:border-border-standard hover:shadow-elevated'
+    ? 'transition-all duration-base ease-out hover:border-accent-border hover:shadow-card'
     : ''
 
   return (
@@ -32,22 +38,22 @@ export function Card({
   )
 }
 
-type CardHeaderProps = React.HTMLAttributes<HTMLDivElement>
+export type CardHeaderProps = React.HTMLAttributes<HTMLDivElement>
 
 export function CardHeader({ className, children, ...props }: CardHeaderProps) {
   return (
-    <div className={cn('mb-4', className)} {...props}>
+    <div className={cn('mb-4 flex flex-col gap-1', className)} {...props}>
       {children}
     </div>
   )
 }
 
-type CardTitleProps = React.HTMLAttributes<HTMLHeadingElement>
+export type CardTitleProps = React.HTMLAttributes<HTMLHeadingElement>
 
 export function CardTitle({ className, children, ...props }: CardTitleProps) {
   return (
     <h3
-      className={cn('text-section-heading text-text-primary', className)}
+      className={cn('text-sub-heading font-semibold text-text-primary', className)}
       {...props}
     >
       {children}
@@ -55,31 +61,34 @@ export function CardTitle({ className, children, ...props }: CardTitleProps) {
   )
 }
 
-type CardDescriptionProps = React.HTMLAttributes<HTMLParagraphElement>
+export type CardDescriptionProps = React.HTMLAttributes<HTMLParagraphElement>
 
 export function CardDescription({ className, children, ...props }: CardDescriptionProps) {
   return (
-    <p className={cn('text-body text-text-secondary mt-2', className)} {...props}>
+    <p className={cn('text-xs text-text-secondary leading-relaxed', className)} {...props}>
       {children}
     </p>
   )
 }
 
-type CardContentProps = React.HTMLAttributes<HTMLDivElement>
+export type CardContentProps = React.HTMLAttributes<HTMLDivElement>
 
 export function CardContent({ className, children, ...props }: CardContentProps) {
   return (
-    <div className={cn('', className)} {...props}>
+    <div className={cn('text-xs text-text-secondary', className)} {...props}>
       {children}
     </div>
   )
 }
 
-type CardFooterProps = React.HTMLAttributes<HTMLDivElement>
+export type CardFooterProps = React.HTMLAttributes<HTMLDivElement>
 
 export function CardFooter({ className, children, ...props }: CardFooterProps) {
   return (
-    <div className={cn('mt-4 pt-4 border-t border-border-subtle flex items-center gap-3', className)} {...props}>
+    <div
+      className={cn('mt-4 pt-4 border-t border-border-subtle flex items-center justify-between gap-3', className)}
+      {...props}
+    >
       {children}
     </div>
   )
