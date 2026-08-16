@@ -1,4 +1,4 @@
-import { motion, HTMLMotionProps } from 'framer-motion'
+import { motion, type HTMLMotionProps } from 'framer-motion'
 import * as React from 'react'
 
 export interface FadeUpProps extends Omit<HTMLMotionProps<'div'>, 'initial' | 'animate' | 'transition' | 'children'> {

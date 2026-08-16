@@ -1,0 +1,194 @@
+---
+import { Layers, Database, Network, Cpu, GitBranch, Sparkles } from 'lucide-react';
+
+const lifecycleFlow = [
+  'Concept',
+  'FEED',
+  'Detailed Engineering',
+  'Control System Design',
+  'Software Development',
+  'Simulation',
+  'Commissioning',
+  'Operations',
+  'Maintenance',
+  'Continuous Improvement',
+];
+
+const platformLayers = [
+  {
+    layer: 'Layer 1',
+    name: 'Engineering Intelligence Layer',
+    icon: Sparkles,
+    subtitle: 'AI Reasoning & Intent Conversion',
+    description:
+      'Provides AI reasoning across the engineering lifecycle. Houses specialized engineering LLMs, industrial RAG pipelines, multi-agent coordination systems, and domain rule engines to convert human intent into deterministic engineering models.',
+    components: ['Engineering LLMs', 'Industrial RAG', 'Multi-Agent System', 'Domain Rules Engine'],
+  },
+  {
+    layer: 'Layer 2',
+    name: 'Unified Engineering Data Model',
+    icon: Database,
+    isCore: true,
+    subtitle: 'The Single Source of Truth (AIR Schema)',
+    description:
+      'The foundational core of PlatX. Everything maps into a common, vendor-neutral data model: Requirements, P&IDs, Tag databases, Instruments, I/O allocations, Control Narratives, PLC logic, HMI objects, and Alarm philosophies.',
+    components: ['P&ID & Instrument Tags', 'I/O & Hardware Allocation', 'State Machines & Interlocks', 'Control Narratives'],
+  },
+  {
+    layer: 'Layer 3',
+    name: 'Engineering Knowledge Graph',
+    icon: Network,
+    subtitle: 'International Standards & Vendor DNA',
+    description:
+      'Stores and connects international engineering standards (ISA-88, ISA-95, IEC 61131-3, IEC 62443, IEC 61511), multi-vendor libraries (Siemens, Rockwell, Schneider, ABB, Beckhoff), and institutional project memories.',
+    components: ['ISA / IEC Standards', 'Vendor Driver Libraries', 'Historical Best Practices', 'Lessons Learned Store'],
+  },
+  {
+    layer: 'Layer 4',
+    name: 'Simulation & Digital Twin Engine',
+    icon: Cpu,
+    subtitle: 'Virtual Commissioning & Verification',
+    description:
+      'Provides closed-loop verification through virtual PLC simulation, process physics modeling, and virtual commissioning testbeds. Validates logic against automated test oracles before physical deployment.',
+    components: ['Virtual PLC Simulation', 'Process Dynamics Twin', 'Automated Test Oracles', 'What-If Failure Analysis'],
+  },
+  {
+    layer: 'Layer 5',
+    name: 'DevOps & Lifecycle Layer',
+    icon: GitBranch,
+    subtitle: 'Version Control & Governance',
+    description:
+      'Brings modern software engineering discipline to industrial automation: Git-native version control, strict gate approval workflows, AST-level diffing, release management, and continuous change tracking.',
+    components: ['Git-Native Versioning', 'Gate Approval Workflows', 'AST-Level Visual Diff', 'CI/CD Compile Verification'],
+  },
+];
+---
+
+<section id="platx-os" class="py-24 bg-bg-page border-b border-border-subtle">
+  <div class="max-w-container mx-auto px-6 md:px-8 lg:px-12">
+    
+    <!-- Section Header -->
+    <div class="max-w-3xl mb-16">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-pill bg-accent-primary/10 border border-accent-border text-accent-primary text-xs font-mono font-medium mb-4">
+        <Layers className="w-3.5 h-3.5" />
+        <span>Platform Vision (Conceptual Design)</span>
+      </div>
+      <h2 class="text-display-medium md:text-display-large text-text-primary tracking-tight font-semibold mb-6">
+        PlatX — The AI-Native Industrial Engineering OS
+      </h2>
+      <p class="text-body-large text-text-secondary leading-relaxed">
+        PlatX transforms industrial automation engineering from a fragmented, document-driven ordeal into a unified, <strong class="text-text-primary font-medium">model-driven, AI-assisted engineering ecosystem</strong>.
+      </p>
+    </div>
+
+    <!-- The Vision Quote Banner -->
+    <div class="p-8 rounded-panel bg-bg-panel border border-accent-border mb-16 shadow-sm relative overflow-hidden">
+      <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-accent-primary/5 rounded-full blur-2xl pointer-events-none"></div>
+      <span class="text-xs font-mono uppercase tracking-widest text-accent-primary font-semibold block mb-2">
+        Platform Vision
+      </span>
+      <p class="text-display-medium md:text-sub-heading-large text-text-primary font-medium tracking-tight mb-2">
+        &ldquo;The Siemens + EPLAN + AVEVA + GitHub + ChatGPT + Palantir for Industrial Automation Engineering.&rdquo;
+      </p>
+      <p class="text-xs font-mono text-accent-primary font-medium mb-4">
+        PLC Automation + Electrical CAD + SCADA/Supervision + Version Control + Generative AI + Industrial Data Intelligence
+      </p>
+      <p class="text-xs text-text-secondary leading-relaxed">
+        A human-supervised platform where requirements generate designs, designs generate software, software generates simulations, simulations generate tests, and operations continuously improve future engineering cycles.
+      </p>
+    </div>
+
+    <!-- Complete Lifecycle Strip -->
+    <div class="mb-16 p-6 rounded-panel bg-bg-elevated border border-border-standard">
+      <span class="text-xs font-mono uppercase tracking-wider text-text-tertiary block mb-4">
+        Full Industrial Automation Lifecycle Flow
+      </span>
+      <div class="flex flex-wrap items-center gap-2">
+        {lifecycleFlow.map((step, idx) => (
+          <div class="flex items-center gap-2">
+            <span class="inline-flex items-center gap-1 px-3 py-1.5 rounded-card bg-bg-panel border border-border-subtle text-xs font-mono text-text-primary font-medium">
+              <span class="text-accent-primary text-[10px]">{String(idx + 1).padStart(2, '0')}.</span>
+              {step}
+            </span>
+            {idx < lifecycleFlow.length - 1 && (
+              <span class="text-text-quaternary font-mono text-xs hidden sm:inline">&rarr;</span>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- The 5 Foundational Layers -->
+    <div class="mb-12">
+      <div class="flex items-center justify-between mb-8">
+        <div>
+          <h3 class="text-section-heading text-text-primary font-semibold">
+            Five Foundational Platform Layers
+          </h3>
+          <p class="text-sm text-text-secondary">
+            Structured architecture ensuring mathematical consistency from intake to execution.
+          </p>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        {platformLayers.map((layer) => (
+          <div class={`p-6 rounded-panel border transition-all ${
+            layer.isCore
+              ? 'bg-bg-panel border-accent-primary/40 shadow-sm ring-1 ring-accent-primary/20'
+              : 'bg-bg-panel border-border-standard hover:border-border-strong'
+          }`}>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+              
+              <!-- Layer Info -->
+              <div class="lg:col-span-4 flex items-start gap-4">
+                <div class="w-12 h-12 rounded-panel flex items-center justify-center flex-shrink-0 bg-accent-primary/10 text-accent-primary border border-accent-border">
+                  <layer.icon className="w-6 h-6" />
+                </div>
+                <div>
+                  <div class="flex items-center gap-2 mb-1">
+                    <span class="font-mono text-xs text-text-tertiary uppercase tracking-wider">{layer.layer}</span>
+                    {layer.isCore && (
+                      <span class="px-2 py-0.5 rounded-pill bg-accent-primary/10 text-accent-primary font-mono text-[10px] font-semibold">
+                        Core Layer
+                      </span>
+                    )}
+                  </div>
+                  <h4 class="text-sub-heading text-text-primary font-semibold">{layer.name}</h4>
+                  <span class="text-xs font-mono text-accent-primary">{layer.subtitle}</span>
+                </div>
+              </div>
+
+              <!-- Layer Description -->
+              <div class="lg:col-span-5">
+                <p class="text-xs text-text-secondary leading-relaxed">
+                  {layer.description}
+                </p>
+              </div>
+
+              <!-- Layer Components -->
+              <div class="lg:col-span-3">
+                <div class="flex flex-wrap gap-1.5">
+                  {layer.components.map((comp) => (
+                    <span class="px-2 py-1 rounded-card bg-bg-elevated border border-border-subtle text-[11px] font-mono text-text-tertiary">
+                      {comp}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Governance Disclaimer -->
+    <div class="pt-4 border-t border-border-subtle">
+      <p class="font-mono text-[11px] text-text-quaternary leading-relaxed">
+        {'// GOVERNANCE NOTE (FIS Aligned): PlatX platform layers and autonomous lifecycle models represent conceptual architectural designs. Production engineering is currently focused on AUTO-PLC (PLC Engineering Automation MVP) and AUTO-IO (I/O Allocation POC).'}
+      </p>
+    </div>
+
+  </div>
+</section>

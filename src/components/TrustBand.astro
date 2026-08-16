@@ -1,0 +1,76 @@
+---
+import { ShieldCheck, Layers } from 'lucide-react';
+
+const standards = [
+  { name: 'IEC 61131-3', desc: 'Standardized PLC Languages (ST, LD, FBD, SFC)' },
+  { name: 'ISA-88', desc: 'Batch Control & Equipment Hierarchy Models' },
+  { name: 'ISA-95', desc: 'Enterprise-Control System Integration & UNS' },
+  { name: 'ISA-18.2', desc: 'Lifecycle Alarm Management & Rationalization' },
+  { name: 'IEC 62443', desc: 'Industrial Security Zones & Conduits' },
+  { name: 'PLCopen', desc: 'Interoperable Motion & Logic Interchange' },
+];
+
+const vendorEcosystems = [
+  { name: 'Siemens TIA Portal', status: 'Validated (SCL/ST Import)', isReady: true },
+  { name: 'Rockwell Studio 5000', status: 'Planned (L5X Driver)', isReady: false },
+  { name: 'Schneider EcoStruxure', status: 'Planned Driver', isReady: false },
+  { name: 'CODESYS V3', status: 'Planned XML Driver', isReady: false },
+  { name: 'Beckhoff TwinCAT', status: 'Planned Driver', isReady: false },
+  { name: 'ABB Ability', status: 'Planned Driver', isReady: false },
+];
+---
+
+<section class="py-12 bg-bg-panel border-b border-border-subtle">
+  <div class="max-w-container mx-auto px-6 md:px-8 lg:px-12">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      
+      <!-- Standards Description -->
+      <div class="lg:col-span-4 border-b lg:border-b-0 lg:border-r border-border-subtle pb-6 lg:pb-0 lg:pr-8">
+        <div class="flex items-center gap-2 mb-2">
+          <ShieldCheck className="w-4 h-4 text-accent-primary" />
+          <span class="font-mono text-xs uppercase font-semibold text-text-primary tracking-wider">
+            Deterministic Standards
+          </span>
+        </div>
+        <p class="text-xs text-text-secondary leading-relaxed">
+          Industrial automation requires exact mathematical rigor. Our compiler rules and validation gates enforce international engineering standards mechanically at every build step.
+        </p>
+      </div>
+
+      <!-- Standards Grid -->
+      <div class="lg:col-span-8">
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          {standards.map((std) => (
+            <div class="p-3 rounded-card bg-bg-page border border-border-subtle hover:border-border-standard transition-colors">
+              <div class="flex items-center gap-1.5 mb-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-success"></span>
+                <span class="font-mono text-xs font-semibold text-text-primary">{std.name}</span>
+              </div>
+              <p class="text-[11px] text-text-tertiary leading-tight">{std.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Vendor Ecosystem Interop Strip -->
+    <div class="mt-8 pt-6 border-t border-border-subtle flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div class="flex items-center gap-2 text-xs text-text-tertiary font-mono">
+        <Layers className="w-3.5 h-3.5 text-text-tertiary" />
+        <span>Vendor-Neutral Asset Model & Multi-Vendor Projections:</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-2">
+        {vendorEcosystems.map((vendor) => (
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-card bg-bg-elevated border border-border-subtle text-xs text-text-secondary">
+            <span class={`w-1.5 h-1.5 rounded-full ${vendor.isReady ? 'bg-success' : 'bg-text-quaternary'}`}></span>
+            <span class="font-medium text-text-primary">{vendor.name}</span>
+            <span class="text-[10px] font-mono text-text-tertiary">({vendor.status})</span>
+          </span>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>

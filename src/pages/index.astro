@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Navigation } from '../components/Navigation';
+import Hero from '../components/Hero.astro';
+import TrustBand from '../components/TrustBand.astro';
+import Problem from '../components/Problem.astro';
+import Pillars from '../components/Pillars.astro';
+import PlatXArchitecture from '../components/PlatXArchitecture.astro';
+import Products from '../components/Products.astro';
+import About from '../components/About.astro';
+import Faq from '../components/Faq.astro';
+import { Contact } from '../components/Contact';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout>
+  <!-- Navigation Island -->
+  <Navigation client:load />
+
+  <main id="main-content" class="flex-1">
+    <!-- 1. Hero with Deterministic Pipeline Island -->
+    <Hero />
+
+    <!-- 2. Trust & Standards Band -->
+    <TrustBand />
+
+    <!-- 3. Problem Statement & Cost of Commissioning -->
+    <Problem />
+
+    <!-- 4. Four Pillars: AI, Knowledge, Automation, Data -->
+    <Pillars />
+
+    <!-- 5. PlatX Operating System Architecture & 5 Layers -->
+    <PlatXArchitecture />
+
+    <!-- 6. Products, Live PLC Showcase & 9-Phase Module Grid -->
+    <Products />
+
+    <!-- 7. Founder, Values & Engineering Milestones -->
+    <About />
+
+    <!-- 8. Frequently Asked Questions (Accessible Details) -->
+    <Faq />
+
+    <!-- 9. Early Access Waitlist & Direct Channels -->
+    <Contact client:visible />
+  </main>
+
+  <!-- 10. Footer with Sitemap & FIS Governance Statement -->
+  <Footer />
+</Layout>

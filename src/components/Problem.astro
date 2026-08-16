@@ -1,0 +1,153 @@
+---
+import { AlertTriangle, Clock, Layers, FileSpreadsheet, Users, Wrench, ArrowRight } from 'lucide-react';
+
+const engineerTasks = [
+  'Requirements intake & scoping',
+  'Repetitive tag and I/O mapping',
+  'Manual PLC & state machine coding',
+  'HMI screen & faceplate creation',
+  'FDS, SDS, FAT & SAT manual drafting',
+  'On-site commissioning troubleshooting',
+  'Tribal knowledge handoffs',
+];
+
+const orgSufferings = [
+  'Critical engineering labor shortages',
+  'Knowledge silos & turnover risks',
+  'Unpredictable project schedules',
+  'High cost overruns from rework',
+  'Inconsistent standardization',
+  'Proprietary vendor lock-in',
+];
+---
+
+<section id="problem" class="py-24 bg-bg-page border-b border-border-subtle">
+  <div class="max-w-container mx-auto px-6 md:px-8 lg:px-12">
+    
+    <!-- Section Header -->
+    <div class="max-w-3xl mb-16">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-pill bg-warning/10 border border-warning/30 text-warning text-xs font-mono font-medium mb-4">
+        <AlertTriangle className="w-3.5 h-3.5" />
+        <span>The Problem</span>
+      </div>
+      <h2 class="text-display-medium md:text-display-large text-text-primary tracking-tight font-semibold mb-6">
+        Industrial automation engineering is still built by hand.
+      </h2>
+      <p class="text-body-large text-text-secondary leading-relaxed">
+        The workflow from concept to commissioning remains highly fragmented. Control engineers spend thousands of hours on repetitive tasks across disconnected tools, while organizations face severe talent shortages and margin erosion.
+      </p>
+    </div>
+
+    <!-- Core Pain Matrix -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+      
+      <div class="p-8 rounded-panel bg-bg-panel border border-border-standard shadow-sm">
+        <div class="w-10 h-10 rounded-card bg-accent-primary/10 border border-accent-border flex items-center justify-center text-accent-primary mb-5">
+          <Layers className="w-5 h-5" />
+        </div>
+        <h3 class="text-sub-heading text-text-primary font-semibold mb-3">
+          Tool Fragmentation
+        </h3>
+        <p class="text-body-small text-text-secondary leading-relaxed">
+          P&IDs, electrical schematics, tag registers, PLC logic, and HMI graphics live in separate, disconnected software silos. Any upstream change requires painstaking manual re-entry across every tool.
+        </p>
+      </div>
+
+      <div class="p-8 rounded-panel bg-bg-panel border border-border-standard shadow-sm">
+        <div class="w-10 h-10 rounded-card bg-warning/10 border border-warning/30 flex items-center justify-center text-warning mb-5">
+          <FileSpreadsheet className="w-5 h-5" />
+        </div>
+        <h3 class="text-sub-heading text-text-primary font-semibold mb-3">
+          Repetitive Manual Work
+        </h3>
+        <p class="text-body-small text-text-secondary leading-relaxed">
+          Engineers spend weeks drafting boilerplate code, assigning I/O racks, scaffolding data blocks, and generating documentation. Standard patterns are recreated from scratch on every project.
+        </p>
+      </div>
+
+      <div class="p-8 rounded-panel bg-bg-panel border border-border-standard shadow-sm">
+        <div class="w-10 h-10 rounded-card bg-accent-primary/10 border border-accent-border flex items-center justify-center text-accent-primary mb-5">
+          <Users className="w-5 h-5" />
+        </div>
+        <h3 class="text-sub-heading text-text-primary font-semibold mb-3">
+          Knowledge Silos & Tribal Habits
+        </h3>
+        <p class="text-body-small text-text-secondary leading-relaxed">
+          Engineering rules exist inside the heads of senior engineers rather than in executable systems. When engineers leave, institutional knowledge leaves with them, creating persistent quality risks.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Breakdown Grid: Engineers vs Organizations -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 p-8 rounded-panel bg-bg-elevated border border-border-standard">
+      
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <Wrench className="w-4 h-4 text-accent-primary" />
+          <h4 class="font-semibold text-text-primary text-sm uppercase font-mono tracking-wide">
+            Where Engineers Spend Their Time
+          </h4>
+        </div>
+        <ul class="space-y-2.5" role="list">
+          {engineerTasks.map((task) => (
+            <li class="flex items-center gap-2.5 text-sm text-text-secondary">
+              <span class="w-1.5 h-1.5 rounded-full bg-accent-primary flex-shrink-0"></span>
+              <span>{task}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <Clock className="w-4 h-4 text-warning" />
+          <h4 class="font-semibold text-text-primary text-sm uppercase font-mono tracking-wide">
+            Organizational Consequences
+          </h4>
+        </div>
+        <ul class="space-y-2.5" role="list">
+          {orgSufferings.map((pain) => (
+            <li class="flex items-center gap-2.5 text-sm text-text-secondary">
+              <span class="w-1.5 h-1.5 rounded-full bg-warning flex-shrink-0"></span>
+              <span>{pain}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- The Hidden Commissioning Trap -->
+    <div class="p-8 rounded-panel bg-gradient-to-r from-bg-panel to-accent-primary/[0.04] border border-accent-border">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div class="max-w-2xl">
+          <span class="text-xs font-mono uppercase tracking-widest text-accent-primary font-semibold block mb-2">
+            The Critical Failure Point
+          </span>
+          <h3 class="text-sub-heading-large text-text-primary font-semibold mb-2">
+            The true cost surfaces during Commissioning.
+          </h3>
+          <p class="text-body text-text-secondary leading-relaxed">
+            When requirements and code errors slip past early phases, they harden into bugs on the factory floor. Fixing a control fault during on-site commissioning costs up to 50× more in delayed production and engineering overhead than catching it at design time.
+          </p>
+        </div>
+        <a
+          href="#pillars"
+          class="inline-flex items-center gap-2 px-5 py-3 rounded-standard bg-bg-panel border border-border-standard text-text-primary text-xs font-semibold hover:bg-bg-hover hover:border-accent-border transition-all flex-shrink-0 shadow-sm"
+        >
+          <span>See How AUTO-X Solves It</span>
+          <ArrowRight className="w-4 h-4 text-accent-primary" />
+        </a>
+      </div>
+    </div>
+
+    <!-- Truth Domain Governance Label -->
+    <div class="mt-8">
+      <span class="font-mono text-[11px] text-text-quaternary block">
+        {'// PROBLEM_DOMAIN: Derived from hands-on industrial automation project delivery. All savings metrics represent target hypotheses under active pilot validation.'}
+      </span>
+    </div>
+
+  </div>
+</section>

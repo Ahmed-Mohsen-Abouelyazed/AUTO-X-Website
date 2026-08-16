@@ -1,0 +1,108 @@
+---
+import { HeroPipeline } from './HeroPipeline';
+import { ArrowRight, ArrowUpRight, CheckCircle2, ShieldCheck } from 'lucide-react';
+
+const standards = [
+  'IEC 61131-3',
+  'ISA-88',
+  'ISA-95',
+  'ISA-18.2',
+  'IEC 62443',
+  'PLCopen',
+];
+---
+
+<section class="relative overflow-hidden pt-32 pb-20 md:pt-36 md:pb-28 border-b border-border-subtle bg-gradient-to-b from-bg-page via-bg-page to-bg-elevated/40">
+  <!-- Subtle Industrial Background Accent Grid / Glow -->
+  <div
+    class="absolute right-0 top-0 -z-10 h-[500px] w-[500px] rounded-full bg-accent-primary/5 blur-[140px] pointer-events-none"
+    aria-hidden="true"
+  ></div>
+
+  <div class="max-w-container mx-auto px-6 md:px-8 lg:px-12">
+    <div class="grid items-center gap-10 lg:grid-cols-12 lg:gap-8">
+      
+      <!-- Left Column: Narrative -->
+      <div class="lg:col-span-6 flex flex-col items-start">
+        
+        <!-- Status Pill -->
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-pill bg-accent-primary/10 border border-accent-border mb-6">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-primary opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-accent-primary"></span>
+          </span>
+          <span class="font-mono text-xs font-medium text-accent-primary tracking-wide">
+            AUTO-X · PlatX Platform Suite
+          </span>
+        </div>
+
+        <!-- Main Headline -->
+        <h1 class="text-display-large md:text-display-hero text-text-primary tracking-tight text-balance mb-6 font-semibold">
+          The AI-Native Operating System for Industrial Engineering.
+        </h1>
+
+        <!-- Positioning Copy -->
+        <p class="text-body-large text-text-secondary text-pretty mb-6 max-w-2xl leading-relaxed">
+          AUTO-X is building the software infrastructure for the next generation of industrial engineering.
+          We develop AI-powered engineering tools that help <strong class="font-medium text-text-primary">Industrial Automation and Industry 4.0</strong> teams <span class="text-accent-primary font-medium">design, build, verify, and operate</span> complex industrial systems — with greater speed, consistency, and confidence.
+        </p>
+
+        <!-- Mission Highlight -->
+        <div class="p-4 rounded-panel bg-bg-panel border border-border-standard mb-8 w-full shadow-sm">
+          <div class="flex items-start gap-3">
+            <ShieldCheck className="w-5 h-5 text-accent-primary mt-0.5 flex-shrink-0" />
+            <div>
+              <span class="text-xs uppercase font-mono tracking-wider text-text-tertiary block mb-1">Mission</span>
+              <p class="text-sm text-text-primary font-medium">
+                Make industrial engineering more intelligent, connected, and dramatically more productive across the complete lifecycle.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action CTAs -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto mb-10">
+          <a
+            href="#contact"
+            class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-standard bg-accent-primary text-white text-sm font-semibold shadow-card hover:bg-accent-hover transition-all hover:shadow-elevated active:scale-[0.98]"
+          >
+            <span>Join Waitlist</span>
+            <ArrowRight className="w-4 h-4" />
+          </a>
+          <a
+            href="#contact"
+            class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-standard bg-bg-panel border border-border-standard text-text-primary text-sm font-semibold hover:bg-bg-hover transition-colors"
+          >
+            <span>Book a Demo</span>
+            <ArrowUpRight className="w-4 h-4 text-text-tertiary" />
+          </a>
+        </div>
+
+        <!-- Standards Compatibility -->
+        <div class="w-full pt-6 border-t border-border-subtle">
+          <span class="text-[11px] font-mono uppercase tracking-widest text-text-tertiary block mb-3">
+            Deterministic Standards Encoded
+          </span>
+          <div class="flex flex-wrap lg:flex-nowrap items-center gap-1.5 overflow-x-auto">
+            {standards.map((badge) => (
+              <span class="inline-flex items-center gap-1.5 px-2 py-0.5 sm:px-2 sm:py-1 rounded-pill bg-bg-panel border border-border-subtle text-[11px] font-mono text-text-secondary whitespace-nowrap flex-shrink-0">
+                <CheckCircle2 className="w-3 h-3 text-success flex-shrink-0" />
+                {badge}
+              </span>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Interactive Deterministic Pipeline Island -->
+      <div class="lg:col-span-6 w-full min-w-0">
+        <div class="relative">
+          <div class="absolute -inset-1 bg-gradient-to-r from-accent-primary/20 to-success/10 rounded-panel blur-lg -z-10 opacity-70"></div>
+          <HeroPipeline client:load />
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,165 @@
+---
+import { Brain, BookOpen, ShieldCheck, Database, CheckCircle2, GitBranch, Cpu, ArrowRight } from 'lucide-react';
+
+const pillars = [
+  {
+    id: 'ai',
+    number: '01',
+    icon: Brain,
+    title: 'Engineering AI',
+    subtitle: 'Reasoning & Intent Conversion',
+    description:
+      'Domain-tuned engineering LLMs, industrial RAG, and multi-agent reasoning convert customer requirements, P&IDs, and control narratives into structured engineering models.',
+    details: [
+      'Engineering LLMs trained on industrial specifications',
+      'Industrial RAG with standards & vendor documentation',
+      'Multi-agent system with specialized discipline agents',
+      'AI proposes, engines verify, engineers approve',
+    ],
+    tag: 'Intelligence Layer',
+  },
+  {
+    id: 'knowledge',
+    number: '02',
+    icon: BookOpen,
+    title: 'Engineering Knowledge',
+    subtitle: 'Standards Encoded as Hard Rules',
+    description:
+      'International standards (IEC 61131-3, ISA-88, ISA-95, ISA-18.2, IEC 62443) and vendor rules are not loose AI prompts — they are encoded as deterministic validators.',
+    details: [
+      'ISA-88 state models & equipment hierarchies',
+      'ISA-18.2 alarm philosophy & rationalization',
+      'IEC 61131-3 language syntax & typing rules',
+      'Vendor-specific guidelines (Siemens, Rockwell, Schneider)',
+    ],
+    tag: 'Rule Engine',
+  },
+  {
+    id: 'automation',
+    number: '03',
+    icon: ShieldCheck,
+    title: 'Deterministic Automation',
+    subtitle: 'Compile-Verify Gate Pipeline',
+    description:
+      'Non-stochastic emission engines ensure identical inputs produce identical, reproducible code. Mechanical compile-verify gates catch errors before reaching the PLC.',
+    details: [
+      'Deterministic compiler pipeline (Ingestion → Graph → AIR → Drivers)',
+      'Schema validation & strict type checking',
+      'Automated syntax & compile verification',
+      'Human-in-the-loop sign-off at every gate',
+    ],
+    tag: 'Deterministic Gates',
+  },
+  {
+    id: 'data',
+    number: '04',
+    icon: Database,
+    title: 'Industrial Data',
+    subtitle: 'Unified Engineering Data Model',
+    description:
+      'A single source of truth connecting requirements, P&IDs, instruments, I/O, control narratives, PLC code, HMI objects, and assets across the entire project lifecycle.',
+    details: [
+      'Unified Engineering Data Model (AIR Schema)',
+      'Engineering Knowledge Graph for institutional memory',
+      'UNS / MQTT Sparkplug B backbone integration',
+      'Bidirectional AST synchronization with runtime controllers',
+    ],
+    tag: 'Single Source of Truth',
+  },
+];
+---
+
+<section id="pillars" class="py-24 bg-bg-panel border-b border-border-subtle">
+  <div class="max-w-container mx-auto px-6 md:px-8 lg:px-12">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-pill bg-accent-primary/10 border border-accent-border text-accent-primary text-xs font-mono font-medium mb-4">
+        <Cpu className="w-3.5 h-3.5" />
+        <span>How AUTO-X Works</span>
+      </div>
+      <h2 class="text-display-medium md:text-display-large text-text-primary tracking-tight font-semibold mb-4">
+        Four Pillars of Next-Gen Industrial Engineering
+      </h2>
+      <p class="text-body-large text-text-secondary leading-relaxed">
+        Our approach combines <strong class="text-text-primary font-medium">AI, engineering knowledge, automation, and industrial data</strong> to connect fragmented workflows and eliminate repetitive tasks while keeping engineers in full control of critical decisions.
+      </p>
+    </div>
+
+    <!-- 4 Pillars Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+      {pillars.map((pillar) => (
+        <div class="p-8 rounded-panel bg-bg-page border border-border-standard shadow-sm hover:border-accent-border transition-all flex flex-col justify-between group">
+          
+          <div>
+            <!-- Card Top: Number & Tag -->
+            <div class="flex items-center justify-between gap-4 mb-6">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-panel bg-accent-primary/10 border border-accent-border flex items-center justify-center text-accent-primary group-hover:scale-105 transition-transform">
+                  <pillar.icon className="w-6 h-6" />
+                </div>
+                <div>
+                  <span class="font-mono text-xs text-text-tertiary uppercase tracking-wider block">Pillar {pillar.number}</span>
+                  <h3 class="text-sub-heading-large text-text-primary font-semibold">{pillar.title}</h3>
+                </div>
+              </div>
+              <span class="px-2.5 py-1 rounded-pill bg-bg-elevated border border-border-subtle font-mono text-[11px] text-text-tertiary">
+                {pillar.tag}
+              </span>
+            </div>
+
+            <p class="text-xs font-mono font-semibold text-accent-primary uppercase tracking-wide mb-3">
+              {pillar.subtitle}
+            </p>
+
+            <p class="text-body text-text-secondary mb-6 leading-relaxed">
+              {pillar.description}
+            </p>
+
+            <!-- Details List -->
+            <ul class="space-y-2.5 pt-4 border-t border-border-subtle mb-6" role="list">
+              {pillar.details.map((detail) => (
+                <li class="flex items-start gap-2 text-xs text-text-secondary leading-normal">
+                  <CheckCircle2 className="w-4 h-4 text-success mt-0.5 flex-shrink-0" />
+                  <span>{detail}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Bottom Principle Tag -->
+          <div class="pt-4 border-t border-border-subtle flex items-center justify-between">
+            <span class="font-mono text-[11px] text-text-quaternary">
+              Deterministic Gate Enforced
+            </span>
+            <span class="w-2 h-2 rounded-full bg-success"></span>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+    <!-- Core Thesis Callout -->
+    <div class="p-8 rounded-panel bg-bg-elevated border border-border-standard flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div class="max-w-3xl">
+        <div class="flex items-center gap-2 mb-2">
+          <GitBranch className="w-4 h-4 text-accent-primary" />
+          <span class="font-mono text-xs uppercase font-semibold text-text-primary">
+            The Fundamental Safety Principle
+          </span>
+        </div>
+        <p class="text-sm text-text-secondary leading-relaxed">
+          <strong class="text-text-primary font-semibold">AI proposes, engines verify, engineers approve.</strong> No AI output is ever deployed directly to a PLC without passing mechanical compilation, standards verification, and explicit human sign-off.
+        </p>
+      </div>
+      <a
+        href="#platx-os"
+        class="inline-flex items-center gap-2 px-5 py-3 rounded-standard bg-accent-primary text-white text-xs font-semibold hover:bg-accent-hover transition-colors flex-shrink-0 shadow-sm"
+      >
+        <span>Explore PlatX Architecture</span>
+        <ArrowRight className="w-4 h-4" />
+      </a>
+    </div>
+
+  </div>
+</section>

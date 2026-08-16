@@ -1,0 +1,171 @@
+---
+import { User, Award, ShieldCheck, Target, Users, BookOpen, Cpu, Compass } from 'lucide-react';
+
+const values = [
+  {
+    icon: Target,
+    title: 'Engineering Intent First',
+    description:
+      'We start with structured engineering requirements — not loose prompts. The unified model is the single source of truth for everything that follows.',
+  },
+  {
+    icon: Users,
+    title: 'Amplification, Not Replacement',
+    description:
+      'AUTO-X amplifies engineer productivity, never replaces them. Human engineers retain complete authority over every critical decision.',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Deterministic & Safe',
+    description:
+      'Identical inputs produce mathematically identical outputs. AI proposes, engines verify, humans approve — no surprises during plant commissioning.',
+  },
+  {
+    icon: BookOpen,
+    title: 'Standards as Hard Rules',
+    description:
+      'IEC 61131-3, ISA-88, ISA-18.2, and IEC 62443 are encoded as mechanical compiler validators — not subjective suggestions.',
+  },
+  {
+    icon: Cpu,
+    title: 'Verification First',
+    description:
+      'Getting it mechanically right is more important than moving blindly fast. Every line of code passes syntax, type, and gate checks.',
+  },
+  {
+    icon: Compass,
+    title: 'Evidence-Driven Governance',
+    description:
+      'Assumptions are labeled as assumptions. No manufactured precision. Customer evidence and formal validation drive all product milestones.',
+  },
+];
+
+const milestones = [
+  { date: '2026-08', title: 'Company Founded', desc: 'AUTO-X established with the mission to make industrial engineering more intelligent, connected, and productive.' },
+  { date: '2026-08', title: 'PlatX Platform Architecture', desc: '5 foundational layers and 9-phase lifecycle module catalog defined.' },
+  { date: '2026-08', title: 'AUTO-PLC Starter Engine', desc: '6-stage deterministic pipeline and AIR schema designed.' },
+  { date: '2026-08', title: 'TIA Openness Bridge Validated', desc: '.NET 8 C# bridge verified for Siemens TIA Portal Structured Text XML import.' },
+  { date: '2026-Q4', title: 'System Integrator Beta Pilots', desc: 'Initial partner pilots evaluated against E4 validation gate (<5% rework on senior review).' },
+  { date: '2027', title: 'PlatX Multi-Vendor Alpha', desc: 'Expansion to Rockwell L5X, CODESYS, Schneider, and on-premise air-gap appliance.' },
+];
+---
+
+<section id="about" class="py-24 bg-bg-page border-b border-border-subtle">
+  <div class="max-w-container mx-auto px-6 md:px-8 lg:px-12">
+    
+    <!-- Section Header -->
+    <div class="max-w-3xl mb-16">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-pill bg-accent-primary/10 border border-accent-border text-accent-primary text-xs font-mono font-medium mb-4">
+        <User className="w-3.5 h-3.5" />
+        <span>About AUTO-X</span>
+      </div>
+      <h2 class="text-display-medium md:text-display-large text-text-primary tracking-tight font-semibold mb-6">
+        Built by an automation engineer, for automation engineers.
+      </h2>
+      <p class="text-body-large text-text-secondary leading-relaxed">
+        AUTO-X was born from the direct frustration of commissioning complex automation projects by hand. We combine deep industrial domain expertise with modern software engineering and deterministic AI.
+      </p>
+    </div>
+
+    <!-- Founder Profile Section -->
+    <div class="p-8 md:p-10 rounded-panel bg-bg-panel border border-border-standard shadow-sm mb-20">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <div class="lg:col-span-4">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-16 h-16 rounded-panel bg-accent-primary/10 border border-accent-border flex items-center justify-center text-accent-primary font-bold text-xl font-mono">
+              AM
+            </div>
+            <div>
+              <h3 class="text-sub-heading-large text-text-primary font-semibold">Ahmed Mohsen Abouelyazed</h3>
+              <span class="text-xs font-mono text-accent-primary font-medium block">Founder / CEO & CTO</span>
+            </div>
+          </div>
+
+          <div class="space-y-2 pt-4 border-t border-border-subtle">
+            <div class="flex items-center gap-2 text-xs text-text-secondary">
+              <Award className="w-4 h-4 text-accent-primary" />
+              <span>Siemens TIA-PRO1 Certified</span>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-text-secondary">
+              <Award className="w-4 h-4 text-accent-primary" />
+              <span>ITI Industrial Automation Department Alum</span>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-text-secondary">
+              <Award className="w-4 h-4 text-accent-primary" />
+              <span>Electrical Power & Control Engineer</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-8 lg:border-l lg:border-border-subtle lg:pl-8">
+          <h4 class="text-xs font-mono uppercase tracking-wider text-text-tertiary mb-3">Domain Background</h4>
+          <p class="text-sm text-text-secondary leading-relaxed mb-4">
+            Experienced control systems engineer with hands-on industrial automation delivery across oil & gas, process manufacturing, utilities, and infrastructure. Extensive background spanning PLC programming, SCADA development, electrical design, and on-site plant commissioning.
+          </p>
+          <p class="text-sm text-text-secondary leading-relaxed">
+            Proficient in Siemens TIA Portal, Rockwell Studio 5000, Schneider EcoStruxure, and international standards (IEC 61131-3, ISA-88, ISA-95, ISA-18.2, IEC 62443). AUTO-X was designed to eliminate the repetitive friction and knowledge silos that control engineers face every day.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Core Engineering Values -->
+    <div class="mb-20">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs font-mono uppercase tracking-widest text-accent-primary font-semibold block mb-2">
+          Engineering Culture
+        </span>
+        <h3 class="text-section-heading text-text-primary font-semibold mb-3">
+          Our Guiding Principles
+        </h3>
+        <p class="text-sm text-text-secondary">
+          The rigorous standards and safety tenets that govern every product decision at AUTO-X.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {values.map((v) => (
+          <div class="p-6 rounded-panel bg-bg-panel border border-border-subtle hover:border-border-standard transition-all">
+            <div class="w-10 h-10 rounded-card bg-accent-primary/10 border border-accent-border flex items-center justify-center text-accent-primary mb-4">
+              <v.icon className="w-5 h-5" />
+            </div>
+            <h4 class="text-sm font-semibold text-text-primary mb-2">{v.title}</h4>
+            <p class="text-xs text-text-secondary leading-relaxed">{v.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Timeline / Journey -->
+    <div>
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs font-mono uppercase tracking-widest text-text-tertiary font-semibold block mb-2">
+          Roadmap & Milestones
+        </span>
+        <h3 class="text-section-heading text-text-primary font-semibold mb-3">
+          Our Journey
+        </h3>
+        <p class="text-sm text-text-secondary">
+          From initial foundation to full AI-Native Industrial Engineering OS.
+        </p>
+      </div>
+
+      <div class="max-w-3xl mx-auto space-y-4">
+        {milestones.map((m) => (
+          <div class="p-4 rounded-card bg-bg-panel border border-border-subtle flex flex-col sm:flex-row sm:items-center gap-4">
+            <span class="font-mono text-xs font-bold text-accent-primary sm:w-24 flex-shrink-0">
+              {m.date}
+            </span>
+            <div class="flex-1">
+              <h5 class="text-xs font-semibold text-text-primary mb-0.5">{m.title}</h5>
+              <p class="text-[11px] text-text-tertiary">{m.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>

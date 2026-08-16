@@ -5,10 +5,19 @@ import tseslintPlugin from '@typescript-eslint/eslint-plugin'
 
 export default [
   {
-    ignores: ['dist/', 'node_modules/', '*.config.js', '*.config.ts'],
+    ignores: [
+      'dist/',
+      '.astro/',
+      'node_modules/',
+      '*.config.js',
+      '*.config.mjs',
+      '*.config.ts',
+      'src/env.d.ts',
+      '**/*.d.ts',
+    ],
   },
   {
-    files: ['**/*.{ts,tsx}'],
+    files: ['src/**/*.{ts,tsx}'],
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: 'module',
