@@ -98,7 +98,7 @@ const FAQ_ITEMS: FaqItem[] = [
     category: 'Founder & Vision',
     question: 'What is the long-term vision for the PlatX Operating System?',
     answer:
-      'PlatX aims to become the Unified Industrial Engineering Operating System — bridging PLC automation, electrical CAD, SCADA/supervision, Git-native version control, domain AI, and industrial data intelligence into a seamless, interconnected platform.',
+      'PlatX aims to become the Unified Industrial Engineering Operating System: bridging PLC automation, electrical CAD, SCADA/supervision, Git-native version control, domain AI, and industrial data intelligence into a seamless, interconnected platform.',
   },
 ]
 

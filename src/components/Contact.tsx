@@ -310,7 +310,7 @@ export function Contact() {
                     Headquarters & Regional Focus
                   </h4>
                   <p className="text-xs text-text-secondary mb-2">
-                    Cairo, Egypt — Serving System Integrators across the MENA region & global industrial automation teams.
+                    Cairo, Egypt: Serving System Integrators across the MENA region & global industrial automation teams.
                   </p>
                   <span className="font-mono text-[11px] text-accent-primary font-medium">
                     Egypt / MENA / Global

@@ -59,7 +59,7 @@
     --text-quaternary: #4b5563;
 
     --brand: #2F80FF;
-    --brand-foreground: #ffffff;
+    --brand-foreground: #0d1117;
     --brand-muted: #16335C;
 
     --accent-primary: #2F80FF;
@@ -74,10 +74,10 @@
     --error: #ef4444;
     --error-bg: rgba(239, 68, 68, 0.15);
 
-    --border-subtle: rgba(255, 255, 255, 0.08);
-    --border-standard: rgba(255, 255, 255, 0.12);
-    --border-strong: rgba(255, 255, 255, 0.20);
-    --border-accent: rgba(47, 128, 255, 0.35);
+    --border-subtle: rgba(255, 255, 255, 0.06);
+    --border-standard: rgba(255, 255, 255, 0.10);
+    --border-strong: rgba(255, 255, 255, 0.16);
+    --border-accent: rgba(47, 128, 255, 0.40);
 
     --ring: var(--brand);
     color-scheme: dark;
@@ -85,20 +85,16 @@
 
   html {
     font-family: var(--font-primary);
-    font-feature-settings: "liga" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    scroll-behavior: smooth;
-    scroll-padding-top: 7rem;
-    background-color: var(--bg-page);
-    color: var(--text-primary);
-    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    text-rendering: optimizeLegibility;
   }
 
   body {
     background-color: var(--bg-page);
     color: var(--text-primary);
     min-height: 100vh;
+    transition: background-color 150ms ease, color 150ms ease;
   }
 
   * {
@@ -148,6 +144,55 @@
   0% { box-shadow: 0 0 0 0 var(--brand); }
   70% { box-shadow: 0 0 0 6px transparent; }
   100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+/* Section Smooth Flash Highlight (Left-to-Right Shimmer on Nav Click) */
+@keyframes sectionFlashSweep {
+  0% {
+    background-color: transparent;
+    outline: 2px solid transparent;
+  }
+  20% {
+    background-color: rgba(47, 128, 255, 0.09);
+    outline: 2px solid rgba(47, 128, 255, 0.35);
+    box-shadow: 0 0 35px rgba(47, 128, 255, 0.18);
+  }
+  60% {
+    background-color: rgba(47, 128, 255, 0.04);
+    outline: 2px solid rgba(47, 128, 255, 0.15);
+  }
+  100% {
+    background-color: transparent;
+    outline: 2px solid transparent;
+    box-shadow: none;
+  }
+}
+
+.section-flash-highlight {
+  animation: sectionFlashSweep 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  transition: all 0.3s ease;
+}
+
+/* Hero Re-Imagined text gradient with dynamic hover glow */
+@keyframes textGradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.re-imagined-gradient {
+  background: linear-gradient(135deg, #2F80FF 0%, #00d2ff 45%, #60a5fa 75%, #2F80FF 100%);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.re-imagined-gradient:hover {
+  animation: textGradientShift 2s ease infinite;
+  filter: drop-shadow(0 0 20px rgba(47, 128, 255, 0.55));
+  transform: scale(1.025);
 }
 
 .auplc-fade-up {

@@ -1,5 +1,5 @@
 import { useState, useId } from 'react'
-import { Calculator, Clock, Users, ArrowRight, ShieldAlert, Sparkles, TrendingUp, Zap } from 'lucide-react'
+import { Calculator, Clock, Users, ArrowRight, Sparkles, TrendingUp, Zap, Info } from 'lucide-react'
 
 export function RoiCalculator() {
   const teamSizeId = useId()
@@ -33,13 +33,7 @@ export function RoiCalculator() {
   // 6. Project duration acceleration (months shaved off per project)
   const monthsSavedPerProject = Math.max(0.4, Number((projectDuration * 0.32).toFixed(1)))
 
-  // 7. Throughput boost percentage
-  const throughputBoost = Math.min(
-    120,
-    Math.max(15, Math.round((hoursSaved / Math.max(1, totalProjectWorkloadHours)) * 100 * 1.6))
-  )
-
-  // 8. Financial value equivalent (@ $75/hr average automation engineering rate)
+  // 7. Financial value equivalent (@ $75/hr average automation engineering rate)
   const financialValue = Math.round(hoursSaved * 75)
 
   // Visual percentage for comparison bar
@@ -61,14 +55,14 @@ export function RoiCalculator() {
             <div className="flex items-center gap-2 mb-2">
               <Calculator className="w-5 h-5 text-accent-primary" />
               <span className="font-mono text-xs uppercase font-bold text-accent-primary tracking-wider">
-                Engineering Capacity & Impact Estimator
+                Engineering Capacity & Impact Estimator (Rough Estimate Model)
               </span>
             </div>
             <h3 className="text-sub-heading-large font-semibold text-text-primary mb-1">
               Calculate Your Engineering Time Reclaimed
             </h3>
             <p className="text-xs text-text-secondary leading-relaxed">
-              Move the sliders or click a preset below to instantly see how AUTO-X transforms your team throughput.
+              Move the sliders or select a preset below to estimate potential engineering throughput gains based on benchmark assumptions.
             </p>
           </div>
 
@@ -106,63 +100,59 @@ export function RoiCalculator() {
       <div className="p-6 md:p-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* Left Column: Interactive Input Sliders */}
+          {/* Left Column: Interactive Sliders */}
           <div className="lg:col-span-6 space-y-6">
             
             {/* Slider 1: Team Size */}
-            <div className="p-4 rounded-card bg-bg-page border border-border-subtle hover:border-border-standard transition-colors">
-              <div className="flex items-center justify-between mb-2">
+            <div className="p-4 rounded-card bg-bg-page border border-border-subtle">
+              <div className="flex justify-between items-center mb-2">
                 <label htmlFor={teamSizeId} className="text-xs font-semibold text-text-primary flex items-center gap-2">
-                  <Users className="w-3.5 h-3.5 text-accent-primary" />
-                  <span>Control / Automation Engineers</span>
+                  <Users className="w-4 h-4 text-accent-primary" />
+                  <span>Automation Engineers in Team</span>
                 </label>
-                <span className="font-mono text-xs font-bold text-accent-primary px-2.5 py-0.5 rounded-pill bg-accent-primary/10 border border-accent-border">
-                  {teamSize} {teamSize === 1 ? 'Engineer' : 'Engineers'}
+                <span className="font-mono text-base font-bold text-accent-primary bg-accent-primary/10 px-2.5 py-0.5 rounded-pill border border-accent-border">
+                  {teamSize} Engineers
                 </span>
               </div>
               <input
                 id={teamSizeId}
                 type="range"
-                min={1}
-                max={25}
-                step={1}
+                min="1"
+                max="50"
                 value={teamSize}
                 onChange={(e) => setTeamSize(Number(e.target.value))}
                 onInput={(e) => setTeamSize(Number((e.target as HTMLInputElement).value))}
-                className="w-full h-2 bg-bg-hover rounded-pill appearance-none cursor-pointer accent-accent-primary"
-                aria-label="Control / Automation Engineers"
+                className="w-full accent-accent-primary cursor-pointer h-2 bg-bg-elevated rounded-lg"
               />
-              <div className="flex justify-between text-[10px] font-mono text-text-quaternary mt-1.5">
-                <span>1 engineer</span>
-                <span>12 engineers</span>
+              <div className="flex justify-between text-[10px] text-text-tertiary font-mono mt-1">
+                <span>1 solo engineer</span>
                 <span>25 engineers</span>
+                <span>50+ enterprise</span>
               </div>
             </div>
 
-            {/* Slider 2: Projects Per Year */}
-            <div className="p-4 rounded-card bg-bg-page border border-border-subtle hover:border-border-standard transition-colors">
-              <div className="flex items-center justify-between mb-2">
+            {/* Slider 2: Annual Projects Count */}
+            <div className="p-4 rounded-card bg-bg-page border border-border-subtle">
+              <div className="flex justify-between items-center mb-2">
                 <label htmlFor={projectsCountId} className="text-xs font-semibold text-text-primary flex items-center gap-2">
-                  <Clock className="w-3.5 h-3.5 text-accent-primary" />
-                  <span>Projects Delivered Per Year</span>
+                  <Clock className="w-4 h-4 text-accent-primary" />
+                  <span>Projects Delivered per Year</span>
                 </label>
-                <span className="font-mono text-xs font-bold text-accent-primary px-2.5 py-0.5 rounded-pill bg-accent-primary/10 border border-accent-border">
-                  {projectsCount} {projectsCount === 1 ? 'Project' : 'Projects'}
+                <span className="font-mono text-base font-bold text-accent-primary bg-accent-primary/10 px-2.5 py-0.5 rounded-pill border border-accent-border">
+                  {projectsCount} Projects
                 </span>
               </div>
               <input
                 id={projectsCountId}
                 type="range"
-                min={1}
-                max={30}
-                step={1}
+                min="1"
+                max="30"
                 value={projectsCount}
                 onChange={(e) => setProjectsCount(Number(e.target.value))}
                 onInput={(e) => setProjectsCount(Number((e.target as HTMLInputElement).value))}
-                className="w-full h-2 bg-bg-hover rounded-pill appearance-none cursor-pointer accent-accent-primary"
-                aria-label="Projects Delivered Per Year"
+                className="w-full accent-accent-primary cursor-pointer h-2 bg-bg-elevated rounded-lg"
               />
-              <div className="flex justify-between text-[10px] font-mono text-text-quaternary mt-1.5">
+              <div className="flex justify-between text-[10px] text-text-tertiary font-mono mt-1">
                 <span>1 project</span>
                 <span>15 projects</span>
                 <span>30 projects</span>
@@ -170,90 +160,91 @@ export function RoiCalculator() {
             </div>
 
             {/* Slider 3: Average Project Duration */}
-            <div className="p-4 rounded-card bg-bg-page border border-border-subtle hover:border-border-standard transition-colors">
-              <div className="flex items-center justify-between mb-2">
+            <div className="p-4 rounded-card bg-bg-page border border-border-subtle">
+              <div className="flex justify-between items-center mb-2">
                 <label htmlFor={projectDurationId} className="text-xs font-semibold text-text-primary flex items-center gap-2">
-                  <Sparkles className="w-3.5 h-3.5 text-accent-primary" />
-                  <span>Average Project Duration</span>
+                  <TrendingUp className="w-4 h-4 text-accent-primary" />
+                  <span>Avg Project Duration</span>
                 </label>
-                <span className="font-mono text-xs font-bold text-accent-primary px-2.5 py-0.5 rounded-pill bg-accent-primary/10 border border-accent-border">
-                  {projectDuration} {projectDuration === 1 ? 'Month' : 'Months'}
+                <span className="font-mono text-base font-bold text-accent-primary bg-accent-primary/10 px-2.5 py-0.5 rounded-pill border border-accent-border">
+                  {projectDuration} Months
                 </span>
               </div>
               <input
                 id={projectDurationId}
                 type="range"
-                min={1}
-                max={12}
-                step={1}
+                min="1"
+                max="12"
                 value={projectDuration}
                 onChange={(e) => setProjectDuration(Number(e.target.value))}
                 onInput={(e) => setProjectDuration(Number((e.target as HTMLInputElement).value))}
-                className="w-full h-2 bg-bg-hover rounded-pill appearance-none cursor-pointer accent-accent-primary"
-                aria-label="Average Project Duration"
+                className="w-full accent-accent-primary cursor-pointer h-2 bg-bg-elevated rounded-lg"
               />
-              <div className="flex justify-between text-[10px] font-mono text-text-quaternary mt-1.5">
-                <span>1 month</span>
+              <div className="flex justify-between text-[10px] text-text-tertiary font-mono mt-1">
+                <span>1 month (fast machine)</span>
                 <span>6 months</span>
-                <span>12 months</span>
+                <span>12 months (large plant)</span>
               </div>
             </div>
 
-            {/* Dynamic Comparison Visualizer Bar */}
-            <div className="p-4 rounded-card bg-bg-page border border-border-subtle">
-              <span className="text-[11px] font-mono uppercase font-semibold text-text-tertiary block mb-2">
-                Project Engineering Cycle Comparison
+            {/* Visual Engineering Effort Comparison Bar */}
+            <div className="p-4 rounded-card bg-bg-elevated border border-border-subtle space-y-3">
+              <span className="text-xs font-semibold text-text-primary block">
+                Engineering Delivery Time Comparison (Relative Effort)
               </span>
               
-              <div className="space-y-2">
-                <div>
-                  <div className="flex justify-between text-[11px] font-mono text-text-secondary mb-1">
-                    <span>Manual Process</span>
-                    <span>{totalProjectWorkloadHours.toLocaleString()} hrs ({manualPercent}%)</span>
-                  </div>
-                  <div className="h-2 w-full bg-bg-hover rounded-pill overflow-hidden">
-                    <div className="h-full bg-text-tertiary rounded-pill w-full transition-all duration-300"></div>
-                  </div>
+              {/* Traditional Bar */}
+              <div>
+                <div className="flex justify-between text-[11px] font-mono text-text-tertiary mb-1">
+                  <span>Traditional Manual Engineering:</span>
+                  <span className="font-bold text-text-primary">{manualPercent}% Effort</span>
                 </div>
+                <div className="h-3 w-full rounded-full bg-border-standard overflow-hidden">
+                  <div className="h-full bg-text-tertiary/70 rounded-full w-full" />
+                </div>
+              </div>
 
-                <div>
-                  <div className="flex justify-between text-[11px] font-mono text-accent-primary mb-1">
-                    <span>With AUTO-X Compiler</span>
-                    <span className="font-bold">{(totalProjectWorkloadHours - hoursSaved).toLocaleString()} hrs ({autoXPercent}%)</span>
-                  </div>
-                  <div className="h-2 w-full bg-bg-hover rounded-pill overflow-hidden">
-                    <div
-                      className="h-full bg-gradient-to-r from-accent-primary to-success rounded-pill transition-all duration-300"
-                      style={{ width: `${autoXPercent}%` }}
-                    ></div>
-                  </div>
+              {/* AUTO-X Bar */}
+              <div>
+                <div className="flex justify-between text-[11px] font-mono text-accent-primary mb-1">
+                  <span className="font-bold flex items-center gap-1">
+                    <Sparkles className="w-3 h-3 text-accent-primary" />
+                    <span>With AUTO-X Deterministic Pipeline:</span>
+                  </span>
+                  <span className="font-bold">{autoXPercent}% Effort</span>
+                </div>
+                <div className="h-3 w-full rounded-full bg-bg-panel overflow-hidden border border-accent-border/40">
+                  <div
+                    className="h-full bg-gradient-to-r from-accent-primary to-[#00d2ff] rounded-full transition-all duration-300"
+                    style={{ width: `${autoXPercent}%` }}
+                  />
                 </div>
               </div>
             </div>
 
           </div>
 
-          {/* Right Column: Calculated Impact Dashboard */}
-          <div className="lg:col-span-6 flex flex-col justify-between p-6 rounded-card bg-bg-elevated border border-border-standard">
+          {/* Right Column: Output Metrics Cards & Breakdown */}
+          <div className="lg:col-span-6 p-6 rounded-panel bg-bg-elevated border border-border-standard flex flex-col justify-between">
+            
             <div>
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-[10px] font-mono uppercase tracking-widest text-text-tertiary block">
-                  Estimated Annual Engineering Reclaim
+              <div className="flex items-center justify-between gap-2 mb-6 pb-4 border-b border-border-subtle">
+                <span className="font-mono text-xs font-semibold uppercase text-text-tertiary">
+                  Estimated Team Impact
                 </span>
-                <span className="inline-flex items-center gap-1 text-[11px] font-mono text-success font-semibold">
-                  <TrendingUp className="w-3.5 h-3.5" />
-                  <span>+{throughputBoost}% Capacity</span>
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-pill bg-success-bg text-success font-mono text-xs font-bold border border-success/30">
+                  <span>Capacity Unlocked</span>
                 </span>
               </div>
 
-              {/* Primary Output Metric Cards */}
+              {/* Two Primary Metrics Grid */}
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div className="p-4 rounded-standard bg-bg-panel border border-border-subtle">
                   <span className="text-2xl md:text-3xl font-mono font-bold text-accent-primary block mb-1">
                     ~{hoursSaved.toLocaleString()}
                   </span>
                   <span className="text-xs font-medium text-text-primary block">Hours Reclaimed / Year</span>
-                  <span className="text-[10px] text-text-tertiary font-mono">From manual repetitive tasks</span>
+                  <span className="text-[10px] text-text-tertiary font-mono">From manual boilerplate</span>
                 </div>
 
                 <div className="p-4 rounded-standard bg-bg-panel border border-border-subtle">
@@ -261,14 +252,14 @@ export function RoiCalculator() {
                     ~{weeksSaved}
                   </span>
                   <span className="text-xs font-medium text-text-primary block">Engineering Weeks Saved</span>
-                  <span className="text-[10px] text-text-tertiary font-mono">Equivalent capacity unlocked</span>
+                  <span className="text-[10px] text-text-tertiary font-mono">Equivalent capacity boost</span>
                 </div>
               </div>
 
               {/* Secondary Breakdown Rows */}
               <div className="space-y-3 mb-6 bg-bg-panel p-4 rounded-standard border border-border-subtle">
                 <div className="flex items-center justify-between text-xs pb-2 border-b border-border-subtle">
-                  <span className="text-text-secondary">Annual Project Workload:</span>
+                  <span className="text-text-secondary">Annual Project Workload Baseline:</span>
                   <span className="font-mono font-semibold text-text-primary">{totalProjectWorkloadHours.toLocaleString()} hrs</span>
                 </div>
                 <div className="flex items-center justify-between text-xs pb-2 border-b border-border-subtle">
@@ -281,7 +272,7 @@ export function RoiCalculator() {
                 </div>
                 <div className="flex items-center justify-between text-xs">
                   <span className="text-text-secondary">Commissioning Risk Mitigation:</span>
-                  <span className="font-mono font-semibold text-success">Deterministic Gate Validation</span>
+                  <span className="font-mono font-semibold text-success">Deterministic Verification</span>
                 </div>
               </div>
             </div>
@@ -290,19 +281,29 @@ export function RoiCalculator() {
               href="#contact"
               className="inline-flex items-center justify-center gap-2 w-full py-3.5 rounded-standard bg-accent-primary text-white text-xs font-semibold shadow-card hover:bg-accent-hover transition-all"
             >
-              <span>Validate With Your Team in Pilot</span>
+              <span>Validate Impact in Pilot Program</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </a>
           </div>
 
         </div>
 
-        {/* Level 2 Evidence Disclaimer */}
-        <div className="mt-6 pt-4 border-t border-border-subtle flex items-start gap-2.5 text-[11px] font-mono text-text-quaternary">
-          <ShieldAlert className="w-3.5 h-3.5 text-text-tertiary mt-0.5 flex-shrink-0" />
-          <span>
-            <strong>FIS Level 2 Evidence Notice:</strong> Metrics above represent target value hypotheses based on industrial project averages and preliminary pilot benchmarks. Actual savings vary by project complexity, existing software reuse, and target PLC architectures.
-          </span>
+        {/* Rough Estimate Model & Assumptions Disclosure */}
+        <div className="mt-6 p-4 rounded-card bg-bg-elevated border border-border-standard flex items-start gap-3 text-xs text-text-tertiary">
+          <Info className="w-4 h-4 text-accent-primary mt-0.5 flex-shrink-0" />
+          <div className="space-y-1">
+            <span className="font-semibold text-text-secondary block">
+              Estimation Model & Key Assumptions Disclosure:
+            </span>
+            <p className="text-[11px] leading-relaxed text-text-tertiary">
+              This estimator is a rough mathematical model based on Level 2 Engineering Value Hypotheses and industry project averages:
+              (1) Baseline assumption of 1,920 productive engineering hours/year per engineer;
+              (2) ~42% of total project cycle spent on manual I/O mapping, tag register bookkeeping, boilerplate SCL scaffolding, and manual test documentation;
+              (3) Estimated ~75% reduction on repetitive tasks through deterministic compiler automation;
+              (4) Standard $75/hour blended engineering cost rate.
+              Actual time reclaimed depends on project complexity, software reuse, and target hardware architecture.
+            </p>
+          </div>
         </div>
       </div>
     </div>

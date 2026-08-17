@@ -1,8 +1,7 @@
 ---
 import { PlcShowcase } from './PlcShowcase';
-import { SclPlayground } from './SclPlayground';
+import { DeterministicFlow } from './DeterministicFlow';
 import { AgentOrchestrator } from './AgentOrchestrator';
-import { ModuleExplorer } from './ModuleExplorer';
 import {
   Cpu,
   Database,
@@ -58,7 +57,7 @@ const flagshipProducts = [
     name: 'AUTO-IO',
     tagline: 'Automatic I/O Design & Cabinet Layout',
     description:
-      'Automates instrument signal mapping, rack allocation, cabinet layouts, and termination diagrams — eliminating weeks of manual spreadsheet errors.',
+      'Automates instrument signal mapping, rack allocation, cabinet layouts, and termination diagrams, eliminating weeks of manual spreadsheet errors.',
     status: 'Technically Validated POC',
     statusVariant: 'success' as const,
     highlights: [
@@ -87,7 +86,7 @@ const flagshipProducts = [
         Built for Today. Architected for Tomorrow.
       </h2>
       <p class="text-body-large text-text-secondary leading-relaxed">
-        From our starter MVP (AUTO-PLC) generating deterministic Siemens SCL logic to the complete PlatX lifecycle ecosystem across 9 engineering phases.
+        From our starter MVP (AUTO-PLC) generating deterministic Siemens SCL logic to the broader PlatX unified engineering platform vision.
       </p>
     </div>
 
@@ -142,7 +141,7 @@ const flagshipProducts = [
           Starter MVP in Action
         </span>
         <h3 class="text-section-heading text-text-primary font-semibold mb-3">
-          AUTO-PLC: The Deterministic Pipeline
+          AUTO-PLC: The 6-Stage Deterministic Pipeline
         </h3>
         <p class="text-sm text-text-secondary">
           Interactive view of the 6 compile-verify gates converting raw user requirements into validated, deployable Siemens TIA Portal Structured Text.
@@ -152,31 +151,14 @@ const flagshipProducts = [
       <PlcShowcase client:load />
     </div>
 
-    <!-- Live Interactive Studio: Control Narrative to SCL Playground -->
+    <!-- 5-Phase Deterministic Engineering Flow Island -->
     <div class="mb-24">
-      <div class="text-center max-w-2xl mx-auto mb-10">
-        <span class="text-xs font-mono uppercase tracking-widest text-accent-primary font-semibold block mb-2">
-          Interactive Code Generation Studio
-        </span>
-        <h3 class="text-section-heading text-text-primary font-semibold mb-3">
-          Live Control Narrative &rarr; SCL Compiler
-        </h3>
-        <p class="text-sm text-text-secondary">
-          Select an industrial control scenario or edit the narrative below to synthesize mathematically verified Structured Text and download ready-to-import SCL code.
-        </p>
-      </div>
-
-      <SclPlayground client:load />
+      <DeterministicFlow client:load />
     </div>
 
     <!-- Multi-Agent Swarm Orchestration Console Island -->
-    <div class="mb-24">
-      <AgentOrchestrator client:load />
-    </div>
-
-    <!-- Searchable 30+ Lifecycle Module Ecosystem Explorer Island -->
     <div class="mb-16">
-      <ModuleExplorer client:load />
+      <AgentOrchestrator client:load />
     </div>
 
     <!-- Governance Notice -->
@@ -184,7 +166,7 @@ const flagshipProducts = [
       <div class="flex items-start gap-3">
         <ShieldAlert className="w-4 h-4 text-text-tertiary mt-0.5 flex-shrink-0" />
         <p class="font-mono text-[11px] text-text-tertiary leading-relaxed">
-          <strong>FIS Truth Domain Governance:</strong> All AUTO-* modules above are conceptual design artifacts within the PlatX vision. Current active implementations: AUTO-PLC (MVP / demo ready with Siemens TIA Portal ST import) and AUTO-IO (technically validated PyQt6 POC). Functional Safety (AUTO-SAFE) is a Post-MVP module under independent human governance and is never automated by AI.
+          <strong>Truth Domain Governance:</strong> Active implementations currently centered on AUTO-PLC (MVP: demo ready with Siemens TIA Portal ST import) and AUTO-IO (technically validated PyQt6 POC). Functional Safety (AUTO-SAFE) is an explicitly designated Post-MVP capability under certified human governance and is never automated by generative AI.
         </p>
       </div>
     </div>
