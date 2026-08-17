@@ -23,7 +23,6 @@ const LAYERS: LayerData[] = [
       { title: 'Deterministic SCL Synthesis', detail: 'Structured text emission validated against closed-loop AST verification gates.' },
       { title: 'Automatic I/O Allocation', detail: 'Constraint-based cabinet terminal routing and channel mapping.' },
       { title: 'Virtual FAT Simulation', detail: 'Automated test assertions executed in virtual controllers before plant delivery.' },
-      { title: '1-Click Documentation', detail: 'Instant FDS, SDS, and loop sheet generation with zero human discrepancy.' },
     ],
   },
   {
@@ -229,40 +228,42 @@ export function EngineeringIntelligenceLayer() {
 
       </div>
 
-      {/* Matched Layer Detail Inspector Callout */}
-      <div className="p-4 sm:p-5 border-t border-border-subtle bg-bg-elevated">
-        <div className="flex items-center justify-between gap-2 mb-1.5">
-          <span className="text-xs font-bold text-text-primary">
-            {activeLayer.name}
-          </span>
-          <span className="px-2.5 py-0.5 rounded-pill font-mono text-[9.5px] font-semibold bg-accent-primary/10 text-accent-primary border border-accent-border">
-            {activeLayer.badge}
-          </span>
-        </div>
-        <p className="text-xs text-text-secondary leading-relaxed mb-3">
-          {activeLayer.description}
-        </p>
+      {/* Matched Layer Detail Inspector Callout with Constant Height */}
+      <div className="p-4 sm:p-5 border-t border-border-subtle bg-bg-elevated min-h-[200px] flex flex-col justify-between">
+        <div>
+          <div className="flex items-center justify-between gap-2 mb-1.5">
+            <span className="text-xs font-bold text-text-primary">
+              {activeLayer.name}
+            </span>
+            <span className="px-2.5 py-0.5 rounded-pill font-mono text-[9.5px] font-semibold bg-accent-primary/10 text-accent-primary border border-accent-border">
+              {activeLayer.badge}
+            </span>
+          </div>
+          <p className="text-xs text-text-secondary leading-relaxed mb-3">
+            {activeLayer.description}
+          </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-          {activeLayer.capabilities.map((cap, idx) => (
-            <div key={idx} className="p-2 rounded bg-bg-panel border border-border-subtle flex items-start gap-2">
-              <CheckCircle2 className="w-3.5 h-3.5 text-accent-primary mt-0.5 flex-shrink-0" />
-              <div>
-                <span className="text-xs font-semibold text-text-primary block">{cap.title}</span>
-                <span className="text-[10.5px] text-text-secondary leading-tight">{cap.detail}</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            {activeLayer.capabilities.map((cap, idx) => (
+              <div key={idx} className="p-2 rounded bg-bg-panel border border-border-subtle flex items-start gap-2">
+                <CheckCircle2 className="w-3.5 h-3.5 text-accent-primary mt-0.5 flex-shrink-0" />
+                <div>
+                  <span className="text-xs font-semibold text-text-primary block">{cap.title}</span>
+                  <span className="text-[10.5px] text-text-secondary leading-tight">{cap.detail}</span>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 
       {/* Footer */}
-      <div className="p-3 bg-bg-hover border-t border-border-subtle flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono text-text-tertiary gap-1.5">
+      <div className="p-3 bg-bg-hover border-t border-border-subtle flex items-center justify-between text-[11px] font-mono text-text-tertiary gap-2">
         <span className="flex items-center gap-1.5">
           <ShieldCheck className="w-3.5 h-3.5 text-accent-primary flex-shrink-0" />
           <span>Vendor Neutral: Eliminates lock-in without modifying plant field standards</span>
         </span>
-        <span className="text-accent-primary font-semibold">
+        <span className="text-accent-primary font-semibold flex-shrink-0">
           PlatX Core
         </span>
       </div>
