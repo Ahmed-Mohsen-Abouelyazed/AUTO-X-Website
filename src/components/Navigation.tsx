@@ -5,10 +5,11 @@ import { ThemeToggle } from './ThemeToggle'
 const navLinks = [
   { href: '#problem', label: 'Problem' },
   { href: '#comparison', label: 'Why AUTO-X' },
+  { href: '#standards', label: 'Standards' },
   { href: '#pillars', label: 'How it Works' },
   { href: '#platx-os', label: 'PlatX OS' },
   { href: '#solutions', label: 'Solutions' },
-  { href: '#products', label: 'Products' },
+  { href: '#products', label: 'Studio & Modules' },
   { href: '#security', label: 'Security' },
   { href: '#about', label: 'About' },
   { href: '#faq', label: 'FAQ' },
@@ -99,7 +100,7 @@ export function Navigation() {
               <a
                 key={link.href}
                 href={link.href}
-                className={`px-3 py-1 rounded-pill text-[11px] font-medium transition-all ${
+                className={`px-2.5 py-1 rounded-pill text-[11px] font-medium transition-all ${
                   isActive
                     ? 'bg-accent-primary text-white shadow-sm font-semibold'
                     : 'text-text-secondary hover:text-text-primary hover:bg-bg-hover'

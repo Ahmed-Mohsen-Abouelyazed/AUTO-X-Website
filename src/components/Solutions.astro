@@ -1,5 +1,6 @@
 ---
 import { Building2, Cog, Factory, CheckCircle2, ArrowRight, Layers } from 'lucide-react';
+import { MaturityAudit } from './MaturityAudit';
 
 const solutions = [
   {
@@ -68,7 +69,7 @@ const solutions = [
     </div>
 
     <!-- Solution Cards Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
       {solutions.map((sol) => (
         <div class="p-8 rounded-panel bg-bg-panel border border-border-standard shadow-sm hover:border-accent-border transition-all flex flex-col justify-between group">
           <div>
@@ -112,6 +113,11 @@ const solutions = [
           </div>
         </div>
       ))}
+    </div>
+
+    <!-- Interactive System Integrator Maturity Diagnostic Island -->
+    <div>
+      <MaturityAudit client:load />
     </div>
 
   </div>

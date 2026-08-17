@@ -1,36 +1,6 @@
 ---
-import { HelpCircle, ChevronDown } from 'lucide-react';
-
-const faqs = [
-  {
-    q: 'Who is AUTO-X designed for?',
-    a: 'AUTO-X is built for Industrial Automation and Industry 4.0 teams — specifically System Integrators (SIs), Original Equipment Manufacturers (OEMs), and Enterprise Manufacturing engineering departments that design, program, verify, and commission complex PLC and SCADA control systems.',
-  },
-  {
-    q: 'What is the current availability status of AUTO-X and PlatX?',
-    a: 'AUTO-PLC is currently demo-ready as our starter MVP proof point. AUTO-IO is a technically validated functional POC. The broader PlatX platform layers and additional 30+ modules are in conceptual architectural design. Partner beta pilots begin in Q4 2026.',
-  },
-  {
-    q: 'How does the deterministic compile-verify gate prevent AI hallucinations in PLC code?',
-    a: 'We enforce the principle that "AI proposes, engines verify, engineers approve." AI is strictly restricted to drafting candidate models. All logic must pass through non-stochastic schema validation, type checking, ISA-88/IEC 61131-3 rule validators, and automated test oracles before any code can be exported. A certified engineer retains final approval.',
-  },
-  {
-    q: 'Which PLC vendors and engineering platforms are supported?',
-    a: 'Siemens TIA Portal (Structured Text / SCL and DB import) is currently validated via our .NET 8 TIA Openness bridge. Support for Rockwell Automation (Studio 5000 / L5X), Schneider Electric (EcoStruxure), CODESYS V3, and Beckhoff TwinCAT is designed through our vendor-neutral Asset Interface Representation (AIR) compiler.',
-  },
-  {
-    q: 'Can AUTO-X run offline or in air-gapped industrial environments?',
-    a: 'Yes. In addition to our hybrid cloud platform, AUTO-X is designed for local-first execution using local offline LLMs (via Ollama). In offline mode, zero proprietary code, tag tables, or plant network data ever leave your air-gapped industrial perimeter.',
-  },
-  {
-    q: 'Is Functional Safety (SIL / IEC 61508 / IEC 61511) automated by AI?',
-    a: 'No. Functional Safety (AUTO-SAFE) is an explicitly designated Post-MVP capability with separate safety lifecycle governance. Safety logic is never auto-generated or modified by non-deterministic models. Safety interlocks require human certification.',
-  },
-  {
-    q: 'How can my team get early access or join the pilot program?',
-    a: 'You can register your interest by joining the waitlist or requesting a technical discovery demo below. Beta access is free for qualifying engineering teams during the pilot phase.',
-  },
-];
+import { HelpCircle } from 'lucide-react';
+import { FaqSearch } from './FaqSearch';
 ---
 
 <section id="faq" class="py-24 bg-bg-panel border-b border-border-subtle">
@@ -42,31 +12,17 @@ const faqs = [
         <HelpCircle className="w-3.5 h-3.5" />
         <span>Frequently Asked Questions</span>
       </div>
-      <h2 class="text-display-medium md:text-display-large text-text-primary tracking-tight font-semibold mb-6">
+      <h2 class="text-display-medium md:text-display-large text-text-primary tracking-tight font-semibold mb-4">
         Answers before you commit.
       </h2>
       <p class="text-body-large text-text-secondary leading-relaxed">
-        Key questions about our deterministic architecture, vendor support, safety governance, and roadmap — answered plainly.
+        Search our knowledge base or filter by category to explore deterministic verification, vendor bridges, Functional Safety (SIL), and pilot qualification.
       </p>
     </div>
 
-    <!-- Accordion List (Semantic details/summary per Modern Web Guidance) -->
-    <div class="max-w-3xl space-y-4">
-      {faqs.map((faq) => (
-        <details class="group p-5 rounded-panel bg-bg-page border border-border-subtle transition-all open:border-border-standard open:bg-bg-elevated open:shadow-sm">
-          <summary class="flex items-center justify-between gap-4 cursor-pointer list-none text-sub-heading text-text-primary font-semibold select-none">
-            <span>{faq.q}</span>
-            <span class="w-7 h-7 rounded-circle bg-bg-panel border border-border-subtle flex items-center justify-center text-text-tertiary group-open:rotate-180 group-open:text-accent-primary transition-transform flex-shrink-0">
-              <ChevronDown className="w-4 h-4" />
-            </span>
-          </summary>
-          <div class="mt-4 pt-3 border-t border-border-subtle">
-            <p class="text-xs text-text-secondary leading-relaxed">
-              {faq.a}
-            </p>
-          </div>
-        </details>
-      ))}
+    <!-- Searchable & Categorized FAQ Island -->
+    <div class="max-w-4xl">
+      <FaqSearch client:load />
     </div>
 
   </div>
