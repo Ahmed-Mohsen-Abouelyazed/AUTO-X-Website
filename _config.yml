@@ -1,0 +1,6 @@
+# Exclude Astro source files from legacy Jekyll parsing
+exclude:
+  - src
+  - node_modules
+  - dist
+  - .github
