@@ -7,44 +7,44 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Background Surfaces
-        'bg-deepest': '#f0f2f5',
-        'bg-page': '#fafbfc',
-        'bg-panel': '#ffffff',
-        'bg-elevated': '#f8fafc',
-        'bg-hover': '#f1f5f9',
+        // Dynamic Background Surfaces (CSS variable-driven)
+        'bg-deepest': 'var(--bg-deepest)',
+        'bg-page': 'var(--bg-page)',
+        'bg-panel': 'var(--bg-panel)',
+        'bg-elevated': 'var(--bg-elevated)',
+        'bg-hover': 'var(--bg-hover)',
 
         // Text & Content
-        'text-primary': '#0d1117',
-        'text-secondary': '#424a5a',
-        'text-tertiary': '#6b7280',
-        'text-quaternary': '#9ca3af',
+        'text-primary': 'var(--text-primary)',
+        'text-secondary': 'var(--text-secondary)',
+        'text-tertiary': 'var(--text-tertiary)',
+        'text-quaternary': 'var(--text-quaternary)',
 
         // Brand Accent (Industrial Blue)
-        'accent-primary': '#2F80FF',
-        'accent-hover': '#5B9CFF',
-        'accent-muted': '#16335C',
-        'accent-border': 'rgba(47, 128, 255, 0.3)',
+        'accent-primary': 'var(--accent-primary)',
+        'accent-hover': 'var(--accent-hover)',
+        'accent-muted': 'var(--accent-muted)',
+        'accent-border': 'var(--accent-border)',
 
-        // Brand tokens (for @apply in CSS)
-        'brand': '#2F80FF',
-        'brand-foreground': '#ffffff',
-        'brand-muted': '#16335C',
-        'accent-warm': '#2F80FF',
+        // Brand tokens
+        'brand': 'var(--brand)',
+        'brand-foreground': 'var(--brand-foreground)',
+        'brand-muted': 'var(--brand-muted)',
+        'accent-warm': 'var(--accent-primary)',
 
         // Status Colors
-        success: '#10b981',
-        'success-bg': 'rgba(16, 185, 129, 0.12)',
-        warning: '#f59e0b',
-        'warning-bg': 'rgba(245, 158, 11, 0.12)',
-        error: '#ef4444',
-        'error-bg': 'rgba(239, 68, 68, 0.12)',
+        success: 'var(--success)',
+        'success-bg': 'var(--success-bg)',
+        warning: 'var(--warning)',
+        'warning-bg': 'var(--warning-bg)',
+        error: 'var(--error)',
+        'error-bg': 'var(--error-bg)',
 
-        // Borders & Dividers (light mode)
-        'border-subtle': 'rgba(0, 0, 0, 0.06)',
-        'border-standard': 'rgba(0, 0, 0, 0.10)',
-        'border-strong': 'rgba(0, 0, 0, 0.15)',
-        'border-accent': 'rgba(47, 128, 255, 0.3)',
+        // Dynamic Borders & Dividers
+        'border-subtle': 'var(--border-subtle)',
+        'border-standard': 'var(--border-standard)',
+        'border-strong': 'var(--border-strong)',
+        'border-accent': 'var(--border-accent)',
       },
       fontFamily: {
         sans: ['Geist Variable', 'Geist', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
@@ -93,12 +93,12 @@ export default {
         'circle': '50%',
       },
       boxShadow: {
-        'ring': '0px 0px 0px 1px rgba(255, 255, 255, 0.06)',
-        'ambient': '0px 2px 4px rgba(0, 0, 0, 0.2)',
-        'card': '0px 0px 0px 1px rgba(255, 255, 255, 0.06), 0px 4px 12px rgba(0, 0, 0, 0.25), 0px 16px 32px -16px rgba(0, 0, 0, 0.3)',
-        'elevated': '0px 0px 0px 1px rgba(255, 255, 255, 0.08), 0px 8px 24px rgba(0, 0, 0, 0.3), 0px 24px 48px -24px rgba(0, 0, 0, 0.4)',
+        'ring': '0px 0px 0px 1px var(--border-subtle)',
+        'ambient': '0px 2px 4px rgba(0, 0, 0, 0.1)',
+        'card': '0px 0px 0px 1px var(--border-subtle), 0px 4px 12px rgba(0, 0, 0, 0.08), 0px 16px 32px -16px rgba(0, 0, 0, 0.12)',
+        'elevated': '0px 0px 0px 1px var(--border-subtle), 0px 8px 24px rgba(0, 0, 0, 0.12), 0px 24px 48px -24px rgba(0, 0, 0, 0.18)',
         'focus': '0px 0px 0px 2px #2F80FF, 0px 0px 0px 4px rgba(47, 128, 255, 0.3)',
-        'accent-glow': '0px 0px 24px rgba(47, 128, 255, 0.4), 0px 0px 48px rgba(47, 128, 255, 0.2)',
+        'accent-glow': '0px 0px 24px rgba(47, 128, 255, 0.3), 0px 0px 48px rgba(47, 128, 255, 0.15)',
       },
       transitionDuration: {
         'fast': '100ms',

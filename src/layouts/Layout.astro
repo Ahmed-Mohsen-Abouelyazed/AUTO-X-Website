@@ -21,6 +21,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://auto-x.i
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#fafbfc" media="(prefers-color-scheme: light)" />
+
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/logo-180.png" />
@@ -51,6 +55,29 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://auto-x.i
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={new URL(image, canonicalURL)} />
 
+    <!-- Immediate Theme Initialization Script to prevent FOUT & support browser dark mode/extensions -->
+    <script is:inline>
+      (function () {
+        try {
+          const storedTheme = localStorage.getItem('theme');
+          const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (storedTheme === 'dark' || (!storedTheme && systemPrefersDark) || !storedTheme) {
+            const isDark = storedTheme ? storedTheme === 'dark' : true;
+            if (isDark) {
+              document.documentElement.classList.add('dark');
+              document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+              document.documentElement.classList.remove('dark');
+              document.documentElement.setAttribute('data-theme', 'light');
+            }
+          } else {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.setAttribute('data-theme', 'light');
+          }
+        } catch (_) {}
+      })();
+    </script>
+
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json" is:inline>
       {
@@ -60,19 +87,31 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://auto-x.i
         "operatingSystem": "Web, Windows, Linux, On-Premise Air-Gap",
         "applicationCategory": "EngineeringSoftware",
         "description": "The AI-Native Operating System for Industrial Automation Engineering. Deterministic compiler pipeline, IEC 61131-3 standards validation, and multi-vendor PLC engineering automation.",
+        "url": "https://auto-x.io",
         "author": {
-          "@type": "Organization",
-          "name": "AUTO-X",
-          "url": "https://auto-x.io"
+          "@type": "Person",
+          "name": "Ahmed Mohsen Abouelyazed",
+          "jobTitle": "Founder & Automation Engineer",
+          "alumniOf": "Information Technology Institute (ITI)"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "description": "Beta Pilot Program (Free for qualifying engineering teams during testing)"
         }
       }
     </script>
   </head>
-  <body class="bg-bg-page text-text-primary antialiased selection:bg-accent-muted selection:text-white min-h-screen flex flex-col">
+  <body class="bg-bg-page text-text-primary antialiased flex flex-col min-h-screen selection:bg-accent-primary selection:text-white">
     <slot />
+
+    <!-- Smooth Anchor Scrolling Init -->
+    <script>
+      import { initSmoothScroll } from '@/lib/scroll';
+      document.addEventListener('DOMContentLoaded', () => {
+        initSmoothScroll();
+      });
+    </script>
   </body>
 </html>
-
-<style is:global>
-  @import "../index.css";
-</style>

@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { Menu, X, ArrowRight } from 'lucide-react'
+import { ThemeToggle } from './ThemeToggle'
 
 const navLinks = [
   { href: '#problem', label: 'Problem' },
@@ -15,7 +16,7 @@ const navLinks = [
 ]
 
 /**
- * Top navigation bar with scroll spy, responsive mobile menu drawer, and keyboard accessibility.
+ * Top navigation bar with scroll spy, responsive mobile menu drawer, theme toggle, and keyboard accessibility.
  */
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -100,7 +101,7 @@ export function Navigation() {
                 href={link.href}
                 className={`px-3 py-1 rounded-pill text-[11px] font-medium transition-all ${
                   isActive
-                    ? 'bg-white text-accent-primary shadow-sm font-semibold'
+                    ? 'bg-accent-primary text-white shadow-sm font-semibold'
                     : 'text-text-secondary hover:text-text-primary hover:bg-bg-hover'
                 }`}
               >
@@ -110,8 +111,9 @@ export function Navigation() {
           })}
         </div>
 
-        {/* Desktop CTA Buttons */}
-        <div className="hidden md:flex items-center gap-3 flex-shrink-0">
+        {/* Desktop CTA & Theme Toggle */}
+        <div className="hidden md:flex items-center gap-2.5 flex-shrink-0">
+          <ThemeToggle />
           <a
             href="#contact"
             className="text-xs font-semibold text-text-secondary hover:text-text-primary px-2.5 py-1.5 rounded-standard transition-colors"
@@ -127,16 +129,19 @@ export function Navigation() {
           </a>
         </div>
 
-        {/* Mobile Menu Toggle Button */}
-        <button
-          type="button"
-          className="xl:hidden p-2 rounded-standard text-text-secondary hover:text-text-primary hover:bg-bg-hover transition-colors cursor-pointer"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-expanded={isOpen}
-          aria-label={isOpen ? 'Close menu' : 'Open menu'}
-        >
-          {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
+        {/* Mobile Menu & Theme Toggle Buttons */}
+        <div className="flex items-center gap-2 xl:hidden">
+          <ThemeToggle />
+          <button
+            type="button"
+            className="p-2 rounded-standard text-text-secondary hover:text-text-primary hover:bg-bg-hover transition-colors cursor-pointer border border-border-subtle"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-expanded={isOpen}
+            aria-label={isOpen ? 'Close menu' : 'Open menu'}
+          >
+            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile Menu Drawer */}
