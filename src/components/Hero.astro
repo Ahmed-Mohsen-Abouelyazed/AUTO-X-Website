@@ -20,10 +20,10 @@ const standards = [
   ></div>
 
   <div class="max-w-container mx-auto px-6 md:px-8 lg:px-12">
-    <div class="grid items-start gap-8 lg:grid-cols-12 lg:gap-8">
+    <div class="grid items-start gap-8 lg:grid-cols-2 lg:gap-10">
       
       <!-- Left Column: Narrative -->
-      <div class="lg:col-span-6 flex flex-col items-start min-w-0">
+      <div class="flex flex-col items-start min-w-0">
         
         <!-- Main Headline: 2-Line Responsive Layout with zero clipping -->
         <h1 class="text-[2rem] sm:text-[2.6rem] md:text-[3rem] lg:text-[2.25rem] xl:text-[2.75rem] 2xl:text-[3.25rem] text-text-primary tracking-tight font-extrabold leading-[1.12] mb-6 text-left">
@@ -73,7 +73,7 @@ const standards = [
           <span class="text-[11px] font-mono uppercase tracking-widest text-text-tertiary block mb-3">
             Deterministic Standards Encoded
           </span>
-          <div class="flex flex-wrap items-center gap-1.5 overflow-x-auto">
+          <div class="flex flex-wrap items-center gap-1.5">
             {standards.map((badge) => (
               <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-pill bg-bg-panel border border-border-subtle text-[11px] font-mono text-text-secondary whitespace-nowrap flex-shrink-0">
                 <CheckCircle2 className="w-3 h-3 text-success flex-shrink-0" />
@@ -86,7 +86,7 @@ const standards = [
       </div>
 
       <!-- Right Column: Interactive Engineering Intelligence Layer Visual Island -->
-      <div class="lg:col-span-6 w-full min-w-0">
+      <div class="w-full min-w-0">
         <div class="relative">
           <div class="absolute -inset-1 bg-gradient-to-r from-accent-primary/20 to-success/10 rounded-panel blur-lg -z-10 opacity-70"></div>
           <EngineeringIntelligenceLayer client:load />

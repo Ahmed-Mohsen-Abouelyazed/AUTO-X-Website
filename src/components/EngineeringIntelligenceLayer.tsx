@@ -82,7 +82,7 @@ export function EngineeringIntelligenceLayer() {
         </span>
       </div>
 
-      {/* 3-Tier Layer Visual Diagram with Matched Colors */}
+      {/* 3-Tier Layer Visual Diagram with Matched Colors & Fixed Geometry */}
       <div className="p-4 sm:p-5 bg-gradient-to-b from-bg-panel via-bg-elevated/40 to-bg-panel space-y-2.5">
         
         {/* Tier 1: Engineering Power */}
@@ -96,13 +96,13 @@ export function EngineeringIntelligenceLayer() {
           }`}
         >
           <div className="flex items-center justify-between gap-2 mb-2">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 min-w-0">
               <Cpu className={`w-4 h-4 flex-shrink-0 ${activeLayerId === 'power' ? 'text-accent-primary' : 'text-text-secondary'}`} />
-              <span className={`text-xs font-bold ${activeLayerId === 'power' ? 'text-accent-primary' : 'text-text-primary'}`}>
+              <span className={`text-xs font-bold truncate ${activeLayerId === 'power' ? 'text-accent-primary' : 'text-text-primary'}`}>
                 Engineering Power & Autonomous Capabilities
               </span>
             </div>
-            <span className={`text-[10px] font-mono px-2 py-0.5 rounded-pill border ${
+            <span className={`text-[10px] font-mono px-2 py-0.5 rounded-pill border flex-shrink-0 ${
               activeLayerId === 'power'
                 ? 'bg-accent-primary text-white font-bold border-accent-primary'
                 : 'bg-bg-elevated text-text-tertiary border-border-subtle'
@@ -111,12 +111,23 @@ export function EngineeringIntelligenceLayer() {
             </span>
           </div>
 
-          <div className="flex flex-wrap gap-1.5 text-[10.5px]">
-            <span className="px-2 py-0.5 rounded bg-bg-panel border border-border-subtle text-text-secondary">Spec Intake</span>
-            <span className="px-2 py-0.5 rounded bg-bg-panel border border-border-subtle text-text-secondary">SCL Logic</span>
-            <span className="px-2 py-0.5 rounded bg-bg-panel border border-border-subtle text-text-secondary">I/O Design</span>
-            <span className="px-2 py-0.5 rounded bg-bg-panel border border-border-subtle text-text-secondary">FAT Simulation</span>
-            <span className="px-2 py-0.5 rounded bg-bg-panel border border-border-subtle text-text-secondary">Auto Documentation</span>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-[11px]">
+            <div className="p-2 rounded bg-bg-panel border border-border-subtle">
+              <span className="font-semibold block text-[11px] text-text-primary truncate">Spec Intake</span>
+              <span className="text-[9.5px] text-text-tertiary block truncate">ISA-88 Parsing</span>
+            </div>
+            <div className="p-2 rounded bg-bg-panel border border-border-subtle">
+              <span className="font-semibold block text-[11px] text-text-primary truncate">SCL Logic</span>
+              <span className="text-[9.5px] text-text-tertiary block truncate">Closed-Loop AST</span>
+            </div>
+            <div className="p-2 rounded bg-bg-panel border border-border-subtle">
+              <span className="font-semibold block text-[11px] text-text-primary truncate">I/O Design</span>
+              <span className="text-[9.5px] text-text-tertiary block truncate">Cabinet Routing</span>
+            </div>
+            <div className="p-2 rounded bg-bg-panel border border-border-subtle">
+              <span className="font-semibold block text-[11px] text-text-primary truncate">FAT Simulation</span>
+              <span className="text-[9.5px] text-text-tertiary block truncate">Virtual Oracles</span>
+            </div>
           </div>
         </button>
 
@@ -133,30 +144,25 @@ export function EngineeringIntelligenceLayer() {
         <button
           type="button"
           onClick={() => setActiveLayerId('intelligence')}
-          className={`w-full p-4 rounded-card border text-left transition-all cursor-pointer relative ${
+          className={`w-full p-3.5 rounded-card border text-left transition-all cursor-pointer relative ${
             activeLayerId === 'intelligence'
-              ? 'bg-accent-primary/10 border-accent-primary shadow-elevated ring-2 ring-accent-primary/50'
-              : 'bg-bg-page border-accent-border/60 hover:border-accent-primary hover:bg-bg-hover'
+              ? 'bg-accent-primary/10 border-accent-primary shadow-sm ring-1 ring-accent-primary/50'
+              : 'bg-bg-page border-border-subtle hover:border-accent-border hover:bg-bg-hover'
           }`}
         >
-          <div className="flex items-center justify-between gap-2 mb-2.5">
-            <div className="flex items-center gap-2.5">
-              <div className="w-6 h-6 rounded bg-accent-primary text-white flex items-center justify-center font-bold text-[11px] flex-shrink-0 shadow-sm">
+          <div className="flex items-center justify-between gap-2 mb-2">
+            <div className="flex items-center gap-2 min-w-0">
+              <div className="w-4 h-4 rounded bg-accent-primary text-white flex items-center justify-center font-bold text-[9px] flex-shrink-0">
                 AX
               </div>
-              <div>
-                <span className="text-xs sm:text-sm font-bold text-text-primary block leading-tight">
-                  AUTO-X Engineering Intelligence Layer
-                </span>
-                <span className="text-[10px] font-mono text-accent-primary font-semibold">
-                  Universal Deterministic Enabler
-                </span>
-              </div>
+              <span className={`text-xs font-bold truncate ${activeLayerId === 'intelligence' ? 'text-accent-primary' : 'text-text-primary'}`}>
+                AUTO-X Engineering Intelligence Layer
+              </span>
             </div>
-            <span className={`text-[10px] font-mono px-2.5 py-0.5 rounded-pill border font-bold ${
+            <span className={`text-[10px] font-mono px-2 py-0.5 rounded-pill border flex-shrink-0 ${
               activeLayerId === 'intelligence'
-                ? 'bg-accent-primary text-white border-accent-primary shadow-sm'
-                : 'bg-accent-primary/10 text-accent-primary border-accent-border'
+                ? 'bg-accent-primary text-white font-bold border-accent-primary'
+                : 'bg-bg-elevated text-text-tertiary border-border-subtle'
             }`}>
               Tier 02 · Core
             </span>
@@ -164,20 +170,20 @@ export function EngineeringIntelligenceLayer() {
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-[11px]">
             <div className="p-2 rounded bg-bg-panel border border-accent-border/40">
-              <span className="text-accent-primary font-bold block text-[11px]">AIR Schema</span>
-              <span className="text-[9.5px] text-text-tertiary">Unified Model</span>
+              <span className="text-accent-primary font-bold block text-[11px] truncate">AIR Schema</span>
+              <span className="text-[9.5px] text-text-tertiary block truncate">Unified Model</span>
             </div>
             <div className="p-2 rounded bg-bg-panel border border-accent-border/40">
-              <span className="text-accent-primary font-bold block text-[11px]">Standards Gates</span>
-              <span className="text-[9.5px] text-text-tertiary">IEC / ISA-88</span>
+              <span className="text-accent-primary font-bold block text-[11px] truncate">Standards Gates</span>
+              <span className="text-[9.5px] text-text-tertiary block truncate">IEC / ISA-88</span>
             </div>
             <div className="p-2 rounded bg-bg-panel border border-accent-border/40">
-              <span className="text-accent-primary font-bold block text-[11px]">AST Compiler</span>
-              <span className="text-[9.5px] text-text-tertiary">0% Hallucination</span>
+              <span className="text-accent-primary font-bold block text-[11px] truncate">AST Compiler</span>
+              <span className="text-[9.5px] text-text-tertiary block truncate">0% Hallucination</span>
             </div>
             <div className="p-2 rounded bg-bg-panel border border-accent-border/40">
-              <span className="text-accent-primary font-bold block text-[11px]">Knowledge Graph</span>
-              <span className="text-[9.5px] text-text-tertiary">Single Truth</span>
+              <span className="text-accent-primary font-bold block text-[11px] truncate">Knowledge Graph</span>
+              <span className="text-[9.5px] text-text-tertiary block truncate">Single Truth</span>
             </div>
           </div>
         </button>
@@ -195,20 +201,20 @@ export function EngineeringIntelligenceLayer() {
         <button
           type="button"
           onClick={() => setActiveLayerId('vendor')}
-          className={`w-full p-3.5 rounded-card border text-left transition-all cursor-pointer ${
+          className={`w-full p-3.5 rounded-card border text-left transition-all cursor-pointer relative ${
             activeLayerId === 'vendor'
               ? 'bg-accent-primary/10 border-accent-primary shadow-sm ring-1 ring-accent-primary/50'
               : 'bg-bg-page border-border-subtle hover:border-accent-border hover:bg-bg-hover'
           }`}
         >
           <div className="flex items-center justify-between gap-2 mb-2">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 min-w-0">
               <Lock className={`w-4 h-4 flex-shrink-0 ${activeLayerId === 'vendor' ? 'text-accent-primary' : 'text-text-secondary'}`} />
-              <span className={`text-xs font-bold ${activeLayerId === 'vendor' ? 'text-accent-primary' : 'text-text-primary'}`}>
+              <span className={`text-xs font-bold truncate ${activeLayerId === 'vendor' ? 'text-accent-primary' : 'text-text-primary'}`}>
                 Vendor-Locked Software & Field Hardware
               </span>
             </div>
-            <span className={`text-[10px] font-mono px-2 py-0.5 rounded-pill border ${
+            <span className={`text-[10px] font-mono px-2 py-0.5 rounded-pill border flex-shrink-0 ${
               activeLayerId === 'vendor'
                 ? 'bg-accent-primary text-white font-bold border-accent-primary'
                 : 'bg-bg-elevated text-text-tertiary border-border-subtle'
@@ -217,25 +223,36 @@ export function EngineeringIntelligenceLayer() {
             </span>
           </div>
 
-          <div className="flex flex-wrap gap-1.5 text-[10.5px]">
-            <span className="px-2 py-0.5 rounded bg-bg-panel border border-border-subtle text-text-secondary">Siemens TIA Portal</span>
-            <span className="px-2 py-0.5 rounded bg-bg-panel border border-border-subtle text-text-secondary">Rockwell Studio 5000</span>
-            <span className="px-2 py-0.5 rounded bg-bg-panel border border-border-subtle text-text-secondary">Schneider EcoStruxure</span>
-            <span className="px-2 py-0.5 rounded bg-bg-panel border border-border-subtle text-text-secondary">CODESYS V3</span>
-            <span className="px-2 py-0.5 rounded bg-bg-panel border border-border-subtle text-text-secondary">Beckhoff TwinCAT</span>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-[11px]">
+            <div className="p-2 rounded bg-bg-panel border border-border-subtle">
+              <span className="font-semibold block text-[11px] text-text-primary truncate">Siemens TIA</span>
+              <span className="text-[9.5px] text-text-tertiary block truncate">S7-1200 / 1500</span>
+            </div>
+            <div className="p-2 rounded bg-bg-panel border border-border-subtle">
+              <span className="font-semibold block text-[11px] text-text-primary truncate">Rockwell</span>
+              <span className="text-[9.5px] text-text-tertiary block truncate">Studio 5000</span>
+            </div>
+            <div className="p-2 rounded bg-bg-panel border border-border-subtle">
+              <span className="font-semibold block text-[11px] text-text-primary truncate">Schneider</span>
+              <span className="text-[9.5px] text-text-tertiary block truncate">EcoStruxure</span>
+            </div>
+            <div className="p-2 rounded bg-bg-panel border border-border-subtle">
+              <span className="font-semibold block text-[11px] text-text-primary truncate">CODESYS</span>
+              <span className="text-[9.5px] text-text-tertiary block truncate">TwinCAT / PLCopen</span>
+            </div>
           </div>
         </button>
 
       </div>
 
       {/* Matched Layer Detail Inspector Callout with Constant Height */}
-      <div className="p-4 sm:p-5 border-t border-border-subtle bg-bg-elevated min-h-[200px] flex flex-col justify-between">
+      <div className="p-4 sm:p-5 border-t border-border-subtle bg-bg-elevated min-h-[224px] flex flex-col justify-between">
         <div>
           <div className="flex items-center justify-between gap-2 mb-1.5">
-            <span className="text-xs font-bold text-text-primary">
+            <span className="text-xs font-bold text-text-primary truncate">
               {activeLayer.name}
             </span>
-            <span className="px-2.5 py-0.5 rounded-pill font-mono text-[9.5px] font-semibold bg-accent-primary/10 text-accent-primary border border-accent-border">
+            <span className="px-2.5 py-0.5 rounded-pill font-mono text-[9.5px] font-semibold bg-accent-primary/10 text-accent-primary border border-accent-border flex-shrink-0">
               {activeLayer.badge}
             </span>
           </div>
@@ -245,11 +262,11 @@ export function EngineeringIntelligenceLayer() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             {activeLayer.capabilities.map((cap, idx) => (
-              <div key={idx} className="p-2 rounded bg-bg-panel border border-border-subtle flex items-start gap-2">
+              <div key={idx} className="p-2.5 rounded bg-bg-panel border border-border-subtle flex items-start gap-2 min-h-[60px]">
                 <CheckCircle2 className="w-3.5 h-3.5 text-accent-primary mt-0.5 flex-shrink-0" />
-                <div>
-                  <span className="text-xs font-semibold text-text-primary block">{cap.title}</span>
-                  <span className="text-[10.5px] text-text-secondary leading-tight">{cap.detail}</span>
+                <div className="min-w-0">
+                  <span className="text-xs font-semibold text-text-primary block truncate">{cap.title}</span>
+                  <span className="text-[10.5px] text-text-secondary leading-tight block">{cap.detail}</span>
                 </div>
               </div>
             ))}
@@ -259,9 +276,9 @@ export function EngineeringIntelligenceLayer() {
 
       {/* Footer */}
       <div className="p-3 bg-bg-hover border-t border-border-subtle flex items-center justify-between text-[11px] font-mono text-text-tertiary gap-2">
-        <span className="flex items-center gap-1.5">
+        <span className="flex items-center gap-1.5 min-w-0">
           <ShieldCheck className="w-3.5 h-3.5 text-accent-primary flex-shrink-0" />
-          <span>Vendor Neutral: Eliminates lock-in without modifying plant field standards</span>
+          <span className="truncate">Vendor Neutral: Eliminates lock-in without modifying plant field standards</span>
         </span>
         <span className="text-accent-primary font-semibold flex-shrink-0">
           PlatX Core
