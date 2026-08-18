@@ -20,7 +20,8 @@ export function initSmoothScroll(): () => void {
     const hash = url.hash
     if (!hash || hash.length < 2) return
 
-    const el = document.getElementById(hash.slice(1))
+    const targetId = decodeURIComponent(hash.slice(1))
+    const el = document.getElementById(targetId)
     if (!el) return
 
     e.preventDefault()

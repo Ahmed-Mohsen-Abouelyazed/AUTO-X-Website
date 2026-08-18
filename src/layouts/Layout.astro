@@ -66,15 +66,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://auto-x.i
         try {
           const storedTheme = localStorage.getItem('theme');
           const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          if (storedTheme === 'dark' || (!storedTheme && systemPrefersDark) || !storedTheme) {
-            const isDark = storedTheme ? storedTheme === 'dark' : true;
-            if (isDark) {
-              document.documentElement.classList.add('dark');
-              document.documentElement.setAttribute('data-theme', 'dark');
-            } else {
-              document.documentElement.classList.remove('dark');
-              document.documentElement.setAttribute('data-theme', 'light');
-            }
+          const isDark = storedTheme ? storedTheme === 'dark' : systemPrefersDark;
+          if (isDark) {
+            document.documentElement.classList.add('dark');
+            document.documentElement.setAttribute('data-theme', 'dark');
           } else {
             document.documentElement.classList.remove('dark');
             document.documentElement.setAttribute('data-theme', 'light');
@@ -108,7 +103,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://auto-x.i
       }
     </script>
   </head>
-  <body class="bg-bg-page text-text-primary antialiased flex flex-col min-h-screen selection:bg-accent-primary selection:text-white">
+  <body id="top" class="bg-bg-page text-text-primary antialiased flex flex-col min-h-screen selection:bg-accent-primary selection:text-white">
     <slot />
 
     <!-- Smooth Anchor Scrolling Init -->

@@ -10,19 +10,13 @@ export function ThemeToggle({ className = '' }: { className?: string }) {
     const storedTheme = localStorage.getItem('theme')
     const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches
 
-    if (storedTheme === 'dark' || (!storedTheme && systemDark) || (!storedTheme && !storedTheme)) {
-      // Default to dark or user preference
-      const shouldBeDark = storedTheme ? storedTheme === 'dark' : true
-      setIsDark(shouldBeDark)
-      if (shouldBeDark) {
-        document.documentElement.classList.add('dark')
-        document.documentElement.setAttribute('data-theme', 'dark')
-      } else {
-        document.documentElement.classList.remove('dark')
-        document.documentElement.setAttribute('data-theme', 'light')
-      }
+    // Determine initial theme: stored preference > OS preference > default dark
+    const shouldBeDark = storedTheme ? storedTheme === 'dark' : systemDark
+    setIsDark(shouldBeDark)
+    if (shouldBeDark) {
+      document.documentElement.classList.add('dark')
+      document.documentElement.setAttribute('data-theme', 'dark')
     } else {
-      setIsDark(false)
       document.documentElement.classList.remove('dark')
       document.documentElement.setAttribute('data-theme', 'light')
     }

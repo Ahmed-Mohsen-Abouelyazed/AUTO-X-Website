@@ -185,10 +185,16 @@ export function AirCodeInspector() {
 
   const activeTab = TABS.find((t) => t.id === activeTabId) || TABS[0]
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(activeTab.code)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
+  const handleCopy = async () => {
+    try {
+      if (typeof navigator !== 'undefined' && navigator.clipboard) {
+        await navigator.clipboard.writeText(activeTab.code)
+        setCopied(true)
+        setTimeout(() => setCopied(false), 2000)
+      }
+    } catch {
+      setCopied(false)
+    }
   }
 
   return (

@@ -54,6 +54,7 @@ export function Stagger({ children, baseDelay = 0, staggerDelay = 60, duration =
       {childrenArray.map((child, index) => {
         if (!React.isValidElement(child)) return child
         return React.cloneElement<React.HTMLAttributes<HTMLDivElement>>(child as React.ReactElement<React.HTMLAttributes<HTMLDivElement>>, {
+          key: child.key ?? `stagger-${index}`,
           style: {
             ...(child.props.style || {}),
             animation: `auplc-fade-up ${duration}s cubic-bezier(0.22, 1, 0.36, 1) both`,

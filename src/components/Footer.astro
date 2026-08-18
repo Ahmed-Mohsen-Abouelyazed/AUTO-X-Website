@@ -80,7 +80,7 @@ const currentYear = new Date().getFullYear();
     <!-- Governance Statement Box -->
     <div class="my-8 p-5 rounded-panel bg-bg-elevated border border-border-standard">
       <div class="flex items-start gap-3">
-        <ShieldCheck className="w-4 h-4 text-accent-primary mt-0.5 flex-shrink-0" />
+        <ShieldCheck className="w-4 h-4 text-accent-primary mt-0.5 flex-shrink-0" aria-hidden="true" />
         <div class="text-[11px] font-mono text-text-tertiary leading-relaxed">
           <strong class="text-text-secondary">AUTO-X Intelligence System Governance:</strong> All AUTO-* modules are conceptual design artifacts within the PlatX vision, with active implementations focused on AUTO-PLC (MVP) and AUTO-IO (POC). Quantitative performance numbers represent target value hypotheses (Level 2 Evidence) under active pilot measurement. Functional Safety (AUTO-SAFE) is a Post-MVP module under independent human certification.
         </div>
@@ -100,11 +100,12 @@ const currentYear = new Date().getFullYear();
       <div class="flex items-center gap-4">
         <ThemeToggle client:load />
         <a
-          href="#"
+          href="#top"
+          aria-label="Back to top of page"
           class="inline-flex items-center gap-1.5 text-xs text-text-secondary hover:text-accent-primary transition-colors"
         >
           <span>Back to top</span>
-          <ArrowUp className="w-3.5 h-3.5" />
+          <ArrowUp className="w-3.5 h-3.5" aria-hidden="true" />
         </a>
       </div>
     </div>

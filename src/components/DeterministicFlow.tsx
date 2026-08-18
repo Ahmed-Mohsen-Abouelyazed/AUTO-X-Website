@@ -106,7 +106,11 @@ export function DeterministicFlow() {
       </div>
 
       {/* 5-Step Horizontal Navigation Bar */}
-      <div className="grid grid-cols-2 sm:grid-cols-5 divide-y sm:divide-y-0 sm:divide-x divide-border-subtle bg-bg-elevated border-b border-border-subtle">
+      <div
+        role="tablist"
+        aria-label="Deterministic PLC Engineering phases"
+        className="grid grid-cols-2 sm:grid-cols-5 divide-y sm:divide-y-0 sm:divide-x divide-border-subtle bg-bg-elevated border-b border-border-subtle"
+      >
         {PHASES.map((phase) => {
           const isActive = phase.id === activePhaseId
           const Icon = phase.icon
@@ -114,8 +118,13 @@ export function DeterministicFlow() {
             <button
               type="button"
               key={phase.id}
+              id={`flow-tab-${phase.id}`}
+              role="tab"
+              aria-selected={isActive}
+              aria-controls={`flow-panel-${phase.id}`}
+              tabIndex={isActive ? 0 : -1}
               onClick={() => setActivePhaseId(phase.id)}
-              className={`p-3.5 text-left transition-all cursor-pointer flex flex-col justify-between ${
+              className={`p-3.5 text-left transition-all cursor-pointer flex flex-col justify-between focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary ${
                 isActive
                   ? 'bg-bg-panel shadow-sm border-b-2 border-b-accent-primary'
                   : 'hover:bg-bg-hover text-text-secondary'
@@ -136,7 +145,12 @@ export function DeterministicFlow() {
       </div>
 
       {/* Active Phase Details */}
-      <div className="p-6 md:p-8 bg-bg-page">
+      <div
+        id={`flow-panel-${activePhase.id}`}
+        role="tabpanel"
+        aria-labelledby={`flow-tab-${activePhase.id}`}
+        className="p-6 md:p-8 bg-bg-page"
+      >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           <div className="lg:col-span-7 space-y-4">

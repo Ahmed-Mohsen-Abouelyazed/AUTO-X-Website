@@ -94,10 +94,12 @@ export function PlcShowcase() {
       e.preventDefault()
       const nextIndex = (index + 1) % pipelineStages.length
       setSelectedStage(pipelineStages[nextIndex])
+      document.getElementById(`stage-tab-${pipelineStages[nextIndex].id}`)?.focus()
     } else if (e.key === 'ArrowLeft') {
       e.preventDefault()
       const prevIndex = (index - 1 + pipelineStages.length) % pipelineStages.length
       setSelectedStage(pipelineStages[prevIndex])
+      document.getElementById(`stage-tab-${pipelineStages[prevIndex].id}`)?.focus()
     }
   }
 
@@ -157,8 +159,11 @@ export function PlcShowcase() {
               <button
                 type="button"
                 key={stage.id}
+                id={`stage-tab-${stage.id}`}
                 role="tab"
                 aria-selected={isSelected}
+                aria-controls={`stage-panel-${stage.id}`}
+                tabIndex={isSelected ? 0 : -1}
                 aria-label={`Stage ${stage.number}: ${stage.title}`}
                 onClick={() => setSelectedStage(stage)}
                 onKeyDown={(e) => handleKeyDown(e, index)}
@@ -192,7 +197,12 @@ export function PlcShowcase() {
         </div>
 
         {/* Selected Stage Detail Box */}
-        <div className="p-6 rounded-card bg-bg-elevated border border-border-standard">
+        <div
+          id={`stage-panel-${selectedStage.id}`}
+          role="tabpanel"
+          aria-labelledby={`stage-tab-${selectedStage.id}`}
+          className="p-6 rounded-card bg-bg-elevated border border-border-standard"
+        >
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4 pb-4 border-b border-border-subtle">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-card bg-accent-primary text-white font-mono text-xs font-bold flex items-center justify-center">

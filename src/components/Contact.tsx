@@ -11,6 +11,7 @@ import {
 export function Contact() {
   const [submitted, setSubmitted] = useState(false)
   const [emailError, setEmailError] = useState<string | null>(null)
+  const [formError, setFormError] = useState<string | null>(null)
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -28,10 +29,15 @@ export function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    if (!formData.firstName.trim() || !formData.lastName.trim()) {
+      setFormError('Please fill in your first and last name.')
+      return
+    }
     if (!validateEmail(formData.email)) {
       setEmailError('Please enter a valid work email address.')
       return
     }
+    setFormError(null)
     setEmailError(null)
     setSubmitted(true)
   }
@@ -47,6 +53,9 @@ export function Contact() {
     if (name === 'email' && emailError) {
       setEmailError(null)
     }
+    if (formError) {
+      setFormError(null)
+    }
   }
 
   const handleReset = () => {
@@ -60,6 +69,7 @@ export function Contact() {
       notes: '',
     })
     setEmailError(null)
+    setFormError(null)
     setSubmitted(false)
   }
 

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import { Bot, Play, RefreshCw, GitBranch, ShieldCheck } from 'lucide-react'
 
 interface Agent {
@@ -68,20 +68,33 @@ const AGENTS: Agent[] = [
 export function AgentOrchestrator() {
   const [activeAgentIndex, setActiveAgentIndex] = useState<number>(2) // Default to SclCompiler
   const [isRunning, setIsRunning] = useState<boolean>(false)
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
-  const handleSimulateCycle = () => {
+  // Clean up interval on unmount to prevent memory leaks and state updates on unmounted component
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current !== null) {
+        clearInterval(intervalRef.current)
+      }
+    }
+  }, [])
+
+  const handleSimulateCycle = useCallback(() => {
     setIsRunning(true)
     let idx = 0
-    const interval = setInterval(() => {
+    intervalRef.current = setInterval(() => {
       setActiveAgentIndex(idx)
       idx++
       if (idx >= AGENTS.length) {
-        clearInterval(interval)
+        if (intervalRef.current !== null) {
+          clearInterval(intervalRef.current)
+          intervalRef.current = null
+        }
         setIsRunning(false)
         setActiveAgentIndex(2)
       }
     }, 900)
-  }
+  }, [])
 
   const selectedAgent = AGENTS[activeAgentIndex]
 

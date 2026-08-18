@@ -121,7 +121,6 @@ export function RoiCalculator() {
                 max="50"
                 value={teamSize}
                 onChange={(e) => setTeamSize(Number(e.target.value))}
-                onInput={(e) => setTeamSize(Number((e.target as HTMLInputElement).value))}
                 className="w-full accent-accent-primary cursor-pointer h-2 bg-bg-elevated rounded-lg"
               />
               <div className="flex justify-between text-[10px] text-text-tertiary font-mono mt-1">
@@ -149,7 +148,6 @@ export function RoiCalculator() {
                 max="30"
                 value={projectsCount}
                 onChange={(e) => setProjectsCount(Number(e.target.value))}
-                onInput={(e) => setProjectsCount(Number((e.target as HTMLInputElement).value))}
                 className="w-full accent-accent-primary cursor-pointer h-2 bg-bg-elevated rounded-lg"
               />
               <div className="flex justify-between text-[10px] text-text-tertiary font-mono mt-1">
@@ -177,7 +175,6 @@ export function RoiCalculator() {
                 max="12"
                 value={projectDuration}
                 onChange={(e) => setProjectDuration(Number(e.target.value))}
-                onInput={(e) => setProjectDuration(Number((e.target as HTMLInputElement).value))}
                 className="w-full accent-accent-primary cursor-pointer h-2 bg-bg-elevated rounded-lg"
               />
               <div className="flex justify-between text-[10px] text-text-tertiary font-mono mt-1">

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { Menu, X, ArrowRight } from 'lucide-react'
 import { ThemeToggle } from './ThemeToggle'
 
@@ -24,6 +24,7 @@ export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('')
   const [isDark, setIsDark] = useState(true)
+  const flashTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   // Track dark mode for logo image swap
   useEffect(() => {
@@ -38,7 +39,12 @@ export function Navigation() {
       attributeFilter: ['class', 'data-theme'],
     })
 
-    return () => observer.disconnect()
+    return () => {
+      observer.disconnect()
+      if (flashTimeoutRef.current !== null) {
+        clearTimeout(flashTimeoutRef.current)
+      }
+    }
   }, [])
 
   const handleScroll = useCallback(() => {
@@ -56,9 +62,12 @@ export function Navigation() {
 
     for (let i = sections.length - 1; i >= 0; i--) {
       const el = document.getElementById(sections[i])
-      if (el && el.offsetTop <= scrollPos) {
-        setActiveSection(sections[i])
-        break
+      if (el) {
+        const top = el.getBoundingClientRect().top + window.scrollY
+        if (top <= scrollPos) {
+          setActiveSection(sections[i])
+          break
+        }
       }
     }
   }, [])
@@ -92,7 +101,7 @@ export function Navigation() {
 
       // Calculate scroll position to place section in vertical center of viewport
       const elementRect = targetEl.getBoundingClientRect()
-      const absoluteElementTop = elementRect.top + window.pageYOffset
+      const absoluteElementTop = elementRect.top + window.scrollY
       const targetCenter = absoluteElementTop - window.innerHeight / 2 + targetEl.clientHeight / 2
 
       window.scrollTo({
@@ -101,12 +110,16 @@ export function Navigation() {
       })
 
       // Trigger left-to-right section flash highlight animation
+      if (flashTimeoutRef.current !== null) {
+        clearTimeout(flashTimeoutRef.current)
+      }
       targetEl.classList.remove('section-flash-highlight')
       void targetEl.offsetWidth // Force reflow
       targetEl.classList.add('section-flash-highlight')
 
-      setTimeout(() => {
+      flashTimeoutRef.current = setTimeout(() => {
         targetEl.classList.remove('section-flash-highlight')
+        flashTimeoutRef.current = null
       }, 1800)
     }
   }
@@ -196,6 +209,7 @@ export function Navigation() {
             className="p-2 rounded-standard text-text-secondary hover:text-text-primary hover:bg-bg-hover transition-colors cursor-pointer border border-border-subtle"
             onClick={() => setIsOpen(!isOpen)}
             aria-expanded={isOpen}
+            aria-controls="mobile-menu-drawer"
             aria-label={isOpen ? 'Close menu' : 'Open menu'}
           >
             {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -205,7 +219,7 @@ export function Navigation() {
 
       {/* Mobile Menu Drawer */}
       {isOpen && (
-        <div className="xl:hidden border-t border-border-subtle bg-bg-panel/95 backdrop-blur-md px-6 py-5 shadow-elevated animate-in fade-in slide-in-from-top-2 duration-200 max-h-[85vh] overflow-y-auto">
+        <div id="mobile-menu-drawer" className="xl:hidden border-t border-border-subtle bg-bg-panel/95 backdrop-blur-md px-6 py-5 shadow-elevated animate-in fade-in slide-in-from-top-2 duration-200 max-h-[85vh] overflow-y-auto">
           <div className="flex flex-col gap-1.5">
             {navLinks.map((link) => (
               <a
